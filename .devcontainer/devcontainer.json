@@ -8,15 +8,15 @@
 
 	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
 	"dockerFile": "../Dockerfile",
-	// "dockerFile": "../DockerfileNative",
-	// "dockerFile": "../code-with-quarkus/src/main/docker/Dockerfile.jvm",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
 	
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		
+		"redhat.vscode-quarkus", //quarkus plugin
+        "MS-CEINTL.vscode-language-pack-ja", //日本語化 plugin
+        "redhat.vscode-quarkus" //quarkus plugin
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

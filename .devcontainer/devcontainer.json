@@ -16,7 +16,8 @@
 	"extensions": [
 		"redhat.vscode-quarkus", //quarkus plugin
         "MS-CEINTL.vscode-language-pack-ja", //日本語化 plugin
-        "redhat.vscode-quarkus" //quarkus plugin
+        "redhat.vscode-quarkus", //quarkus plugin
+		"ckolkman.vscode-postgres" //postgres
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -28,10 +29,17 @@
 	// "postCreateCommand": "apt-get update && apt-get install -y curl",
 
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
-	// "runArgs": [ "--privileged=true" ],
+	// "runArgs": [ "-e TESTCONTAINERS_HOST_OVERRIDE=docker.for.mac.host.internal" ],
 
 	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
 	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+
+	// testcontainerを動かすための設定。以下を参考にしたがなぜこれでいいかわからず
+	// https://stackoverflow.com/questions/69695411/dockerfile-testcontainers-can-not-connect-to-ryuk
+	// https://qiita.com/kai_kou/items/5182965ea75c85cf1e3f
+    "containerEnv": {
+		"TESTCONTAINERS_HOST_OVERRIDE" : "host.docker.internal"
+	}
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"

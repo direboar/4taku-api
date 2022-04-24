@@ -29,6 +29,6 @@ USER myuser
 #permissionを指定してCOPYする。
 COPY --chmod=777 ./code-with-quarkus/ /app/code-with-quarkus/
 WORKDIR /app/code-with-quarkus
-RUN ./mvnw install
+RUN ./mvnw install -Dmaven.test.skip
     
-CMD ./mvnw quarkus:dev
+# CMD ./mvnw quarkus:dev

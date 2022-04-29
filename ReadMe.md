@@ -6,3 +6,5 @@
 
 Windows上からlocalhost:8080でアクセス可能。
 
+### postgresのportについて
+1. portを固定すると、コード修正時に同じPortでpostgresが起動してしまいテストがエラーとなる。回避策としてportを指定しないようにしている。postgresのクライアントから接続する場合は、5432に固定すること。

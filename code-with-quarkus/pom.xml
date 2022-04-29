@@ -53,7 +53,12 @@
        <groupId>io.quarkus</groupId>
        <artifactId>quarkus-hibernate-orm</artifactId>
     </dependency>
-
+    <!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-55 json型へのマッピングのために使用。-->
+    <dependency>
+      <groupId>com.vladmihalcea</groupId>
+      <artifactId>hibernate-types-55</artifactId>
+      <version>2.16.1</version>
+    </dependency>
     <!-- JDBC driver dependencies -->
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -69,6 +74,21 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+    <!--rest client-->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client-reactive-jackson</artifactId>
+    </dependency>    
+    <!-- OidcClient -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-oidc-client</artifactId>
+    </dependency>
+    <!--scheduler-->
+    <dependency>
+       <groupId>io.quarkus</groupId>
+       <artifactId>quarkus-scheduler</artifactId>
+    </dependency>    
   </dependencies>
   <build>
     <plugins>
@@ -105,6 +125,20 @@
             <maven.home>${maven.home}</maven.home>
           </systemPropertyVariables>
         </configuration>
+      </plugin>
+      <plugin>
+        <!--Jandex インデックスの生成 https://ja.quarkus.io/guides/cdi-reference#jandex-%E3%82%A4%E3%83%B3%E3%83%87%E3%83%83%E3%82%AF%E3%82%B9%E3%81%AE%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95 -->
+        <groupId>org.jboss.jandex</groupId>
+        <artifactId>jandex-maven-plugin</artifactId>
+        <version>1.2.2</version>
+        <executions>
+          <execution>
+            <id>make-index</id>
+            <goals>
+              <goal>jandex</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

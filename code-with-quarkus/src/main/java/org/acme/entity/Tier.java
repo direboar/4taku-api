@@ -8,11 +8,8 @@ public class Tier {
     private String name;
     private String color;
 
-    //永続化しない
-    private List<Hero> heros = new ArrayList<>();
-
     //永続化対象
-    private List<TieredHero> tieredHero = new ArrayList<>();
+    private List<Hero> heros = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -38,11 +35,43 @@ public class Tier {
     public void setHeros(List<Hero> heros) {
         this.heros = heros;
     }
-    public List<TieredHero> getTieredHero() {
-        return tieredHero;
+
+    public static class Hero{
+        private int id;
+        private Ban ban;
+
+        public int getId() {
+            return id;
+        }
+        public void setId(int id) {
+            this.id = id;
+        }
+        public Ban getBan() {
+            return ban;
+        }
+        public void setBan(Ban ban) {
+            this.ban = ban;
+        }
+    
     }
-    public void setTieredHero(List<TieredHero> tieredHero) {
-        this.tieredHero = tieredHero;
+
+    public static class Ban{
+        private List<String> exists ;
+        private List<String> notExists ;
+
+        public List<String> getExists() {
+            return exists;
+        }
+        public void setExists(List<String> exists) {
+            this.exists = exists;
+        }
+        public List<String> getNotExists() {
+            return notExists;
+        }
+        public void setNotExists(List<String> notExists) {
+            this.notExists = notExists;
+        }
+
     }
 
 }

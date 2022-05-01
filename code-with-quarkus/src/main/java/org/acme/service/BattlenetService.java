@@ -44,8 +44,8 @@ public class BattlenetService {
 
         Client client = ClientBuilder.newBuilder().build();
         WebTarget target = client.target(
-                "https://us.api.blizzard.com/hearthstone/cards?:region=us&gameMode=battlegrounds&tier=hero&pageSize=1000");
-
+                "https://us.api.blizzard.com/hearthstone/cards?:region=us&gameMode=battlegrounds&tier=hero&pageSize=100");
+    
         try (Response response = target.request()
                 .header("Authorization", "Bearer " + this.currentTokens.getAccessToken())
                 .get();) {
@@ -76,74 +76,5 @@ public class BattlenetService {
             return null;
         }
     }
-
-    // @Transactional
-    // public Gift getHoge() throws Exception {
-    //     Client client = ClientBuilder.newBuilder().build();
-    //     WebTarget target = client.target(
-    //             "http://localhost:8080/santa/get");
-    //     Response response = target.request()
-    //             .header("Authorization", "Bearer " + this.currentTokens.getAccessToken())
-    //             .accept(MediaType.APPLICATION_JSON)
-    //             .get();
-    //     // String value = response.readEntity(String.class);
-    //     // LOG.info(value);
-    //     // Map<String, String> map = this.mapper.readValue(value, HashMap.class);
-    //     // MyGift gift = response.readEntity(MyGift.class);
-    //     // LOG.info(gift.name);
-    //     Gift gift = response.readEntity(Gift.class);
-
-    //     return gift;
-    //     // TODO call battlenet api with jax-rs api.
-    //     // return null;
-    // }
 }
 
-// class MyGift{
-//     String name;
-// }
-
-// class BattlenetGetHeroResponse{
-//     private List<BattlenetCard> cards ;
-// }
-
-// class BattlenetCard{
-//     private int id;
-//     private BattlenetCardName name;
-//     private BattlenetCardImage image;
-
-// }
-
-// class BattlenetCardName{
-//     private String en_US;
-//     private String ja_JP;
-// }
-
-// class BattlenetCardImage{
-//     private String ja_JP;
-// }
-
-// class GiftModel {
-//     private Long id;
-//     private String name;
-
-//     GiftModel() {
-
-//     }
-
-//     public Long getId() {
-//         return id;
-//     }
-
-//     public void setId(Long id) {
-//         this.id = id;
-//     }
-
-//     public String getName() {
-//         return name;
-//     }
-
-//     public void setName(String name) {
-//         this.name = name;
-//     }
-// }

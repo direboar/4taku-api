@@ -21,8 +21,6 @@ public class TierTableService {
 
     @Transactional
     public int save(TierTable tierTable) {
-        //HeroはJSONに永続化しないので参照を削除する。
-        // this.deleteHeroObject(tierTable);
         TierTable updated = this.entityManager.merge(tierTable);
         return updated.getId();
     }
@@ -57,15 +55,7 @@ public class TierTableService {
         CriteriaQuery<TierTable> query = builder.createQuery(TierTable.class);
         Root<TierTable> root = query.from(TierTable.class);
         query.multiselect(root.get("id"), root.get("name"));
-        // query.select(root);
         return entityManager.createQuery(query).setFirstResult(offset).setMaxResults(limit).getResultList();
     }
 
-    // private void deleteHeroObject(TierTable tierTable) {
-    //     if (tierTable.getTiers() == null)
-    //         return;
-    //     tierTable.getTiers().forEach((tier -> {
-    //         tier.setHeros(null);
-    //     }));
-    // }
 }

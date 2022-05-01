@@ -2,6 +2,13 @@ package org.acme.rest.json;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter 
+@Setter 
+@ToString
 public class PagingResponse<T> {
     
     private List<T> entity;
@@ -10,17 +17,5 @@ public class PagingResponse<T> {
         this.entity = entity;
         this.totalCount = totalCount;
     }
-    public int getTotalCount() {
-        return totalCount;
-    }
-    public List<T> getEntity() {
-        return entity;
-    }
-    public void setEntity(List<T> entity) {
-        this.entity = entity;
-    }
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
-    }
-
+    
 }

@@ -15,6 +15,10 @@
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.8.0.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+
+    <lombok.version>1.18.20</lombok.version>
+    <mapstruct.version>1.4.2.Final</mapstruct.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -93,12 +97,12 @@
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct</artifactId>
-      <version>1.4.2.Final</version>
+      <version>${mapstruct.version}</version>
     </dependency>
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct-processor</artifactId>
-      <version>1.4.2.Final</version>
+      <version>${mapstruct.version}</version>
       <scope>provided</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
@@ -106,6 +110,13 @@
        <groupId>commons-beanutils</groupId>
        <artifactId>commons-beanutils</artifactId>
        <version>1.9.4</version>
+   </dependency>
+   <!-- Require lombok for the project -->
+   <dependency>
+     <groupId>org.projectlombok</groupId>
+     <artifactId>lombok</artifactId>
+     <version>${lombok.version}</version>
+     <scope>provided</scope>
    </dependency>
 
   </dependencies>
@@ -130,6 +141,24 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${compiler-plugin.version}</version>
         <configuration>
+          <!-- mapstructとlombok併用時の設定。https://mapstruct.org/faq/#Can-I-use-MapStruct-together-with-Project-Lombok-->
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>${lombok-mapstruct-binding.version}</version>
+            </path>
+          </annotationProcessorPaths>
           <compilerArgs>
             <arg>-parameters</arg>
           </compilerArgs>

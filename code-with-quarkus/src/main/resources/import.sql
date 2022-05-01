@@ -2,6 +2,8 @@ drop table if exists gift;
 drop table if exists Hero;
 drop table if exists TierTable;
 
+drop table if exists MinionType;
+
 create table gift(
     id   int primary key,
     name varchar(100)
@@ -21,7 +23,11 @@ create table TierTable(
     ownerid int,
     tiers jsonb
 );
-
+create table MinionType (
+    id   int primary key,
+    name varchar(64) not null,
+    imageURL varchar(64) not null   
+);
 
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(1,59397,'Patchwerk','パッチウァーク','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1d387b97b0681474da04b0207561fe3c688cf987ac3bcdc118b42a63db5422f9.png',false);
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(2,74631,'Kurtrus Ashfallen','カートラス・アッシュフォールン','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/791be7c00632456f1ff4ab7e5419418d222d2cb717f4e2cb955f3399c85a01a2.png',false);
@@ -165,4 +171,11 @@ insert into TierTable values (10058, 'tier表58',1,null);
 insert into TierTable values (10059, 'tier表59',1,null);
 insert into TierTable values (10060, 'tier表60',1,null);
 
-
+insert into MinionType VALUES (1,'獣','./minionTypes/Beast.png');
+insert into MinionType VALUES (2,'悪魔','./minionTypes/Demon.png');
+insert into MinionType VALUES (3,'ドラゴン','./minionTypes/Dragon.png');
+insert into MinionType VALUES (4,'エレメンタル','./minionTypes/Elemental.png');
+insert into MinionType VALUES (5,'メカ','./minionTypes/Mech.png');
+insert into MinionType VALUES (6,'マーロック','./minionTypes/Murloc.png');
+insert into MinionType VALUES (7,'海賊','./minionTypes/Pirate.png');
+insert into MinionType VALUES (8,'キルボア','./minionTypes/Quilboar.png');

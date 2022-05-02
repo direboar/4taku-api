@@ -33,7 +33,7 @@ public class TierTableUpdateRequest {
     public static class Hero{
         private int id;
         private Ban ban;
-
+        private String memo;
     }
 
     @Getter 

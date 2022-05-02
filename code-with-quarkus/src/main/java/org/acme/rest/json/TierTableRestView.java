@@ -37,6 +37,7 @@ public class TierTableRestView{
         private String displayName;
         private String imageURL;
         private Ban ban;
+        private String memo;
 
     }
 

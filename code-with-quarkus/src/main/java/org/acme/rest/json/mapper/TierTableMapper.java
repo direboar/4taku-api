@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.acme.entity.Hero;
@@ -20,7 +19,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "cdi")
-@ApplicationScoped
 public abstract class TierTableMapper {
 
     @Inject

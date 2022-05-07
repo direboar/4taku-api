@@ -12,12 +12,25 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.acme.entity.TierTable;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
+import io.quarkus.oidc.UserInfo;
+import io.quarkus.security.identity.SecurityIdentity;
 
 @ApplicationScoped
 public class TierTableService {
 
     @Inject
     private EntityManager entityManager;
+
+    @Inject
+    private UserInfo userInfo;
+
+    @Inject
+    private JsonWebToken jwt;
+
+    @Inject
+    SecurityIdentity securityIdentity;
 
     @Transactional
     public int save(TierTable tierTable) {

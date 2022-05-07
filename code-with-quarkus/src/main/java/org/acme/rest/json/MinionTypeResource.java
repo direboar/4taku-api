@@ -14,6 +14,9 @@ import org.acme.entity.MinionType;
 import org.acme.service.MinionTypeService;
 import org.jboss.logging.Logger;
 
+import io.quarkus.security.Authenticated;
+
+@Authenticated
 @Path("/miniontypes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

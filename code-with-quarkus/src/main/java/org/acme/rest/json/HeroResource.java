@@ -13,9 +13,12 @@ import javax.ws.rs.core.Response;
 import org.acme.entity.Hero;
 import org.acme.service.HeroService;
 
+import io.quarkus.security.Authenticated;
+
 @Path("/heros")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Authenticated
 public class HeroResource {
 
     @Inject

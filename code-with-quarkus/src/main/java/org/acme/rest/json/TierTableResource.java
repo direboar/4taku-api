@@ -19,6 +19,9 @@ import org.acme.service.TierTableService;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestQuery;
 
+import io.quarkus.security.Authenticated;
+
+@Authenticated
 @Path("/tiertables")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

@@ -45,7 +45,7 @@ public class AccountService {
         String oicdUserName = this.securityIdentity.getPrincipal().getName();
         Account account = new Account();
         account.setOicdUserName(oicdUserName);
-        account.setName(this.userInfo.getString("name")); //fixme
+        // account.setName(this.userInfo.getString("name")); //fixme
         account.setTierTableId(null);
         this.entityManager.persist(account);
         return account;

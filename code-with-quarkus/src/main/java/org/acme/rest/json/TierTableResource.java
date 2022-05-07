@@ -26,7 +26,6 @@ import io.quarkus.security.Authenticated;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TierTableResource {
-
     private static final Logger LOG = Logger.getLogger(TierTableResource.class);
 
     @Inject

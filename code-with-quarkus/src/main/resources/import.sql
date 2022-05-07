@@ -29,6 +29,12 @@ create table MinionType (
     imageURL varchar(64) not null   
 );
 
+create table account(
+    oicdUserName varchar(255) primary key, # https://qiita.com/TakahikoKawasaki/items/8f0e422c7edd2d220e06#72-sub-%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%A0
+    name varchar(128) not null,
+    tableTierId int
+);
+
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(1,59397,'Patchwerk','パッチウァーク','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1d387b97b0681474da04b0207561fe3c688cf987ac3bcdc118b42a63db5422f9.png',false);
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(2,74631,'Kurtrus Ashfallen','カートラス・アッシュフォールン','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/791be7c00632456f1ff4ab7e5419418d222d2cb717f4e2cb955f3399c85a01a2.png',false);
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(3,64400,'Rakanishu','ラカニシュ','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/ec519918ed7a76f2d388bf8670ecb9be5ae6c395b4caac8018f199f17285047d.png',false);

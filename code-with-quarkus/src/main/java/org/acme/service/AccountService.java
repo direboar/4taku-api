@@ -3,6 +3,10 @@ package org.acme.service;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.acme.entity.Account;
@@ -37,8 +41,16 @@ public class AccountService {
     }
 
     public Account getAccount(){
-        String oiceUserName = this.securityIdentity.getPrincipal().getName();
-        return this.entityManager.find(Account.class, oiceUserName);
+        String oicdUserName = this.securityIdentity.getPrincipal().getName();
+        CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+        CriteriaQuery<Account> query = builder.createQuery(Account.class);
+        Root<Account> root = query.from(Account.class);
+        query.select(root).where(builder.equal(root.get("oicdUserName"), oicdUserName));
+        try{
+            return entityManager.createQuery(query).getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
     }
 
     private Account createDefaultAccount(){

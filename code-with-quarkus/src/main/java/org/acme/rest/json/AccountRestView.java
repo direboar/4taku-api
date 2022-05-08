@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter 
 @ToString
 public class AccountRestView {
-    private String oicdUserName;
+    private int id;
     private String name;
     private String tierTableName;
     private Integer tierTableId;

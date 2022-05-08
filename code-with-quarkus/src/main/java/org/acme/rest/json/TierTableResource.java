@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.acme.entity.TierTable;
+import org.acme.entity.dto.TierTablePagingDto;
 import org.acme.rest.json.mapper.TierTableMapper;
 import org.acme.service.TierTableService;
 import org.jboss.logging.Logger;
@@ -60,9 +61,15 @@ public class TierTableResource {
         return Response.ok(view).build(); 
     }
 
+    // @GET
+    // public Response getPage(@RestQuery int offset, @RestQuery int limit) {
+    //     List<TierTable> tierTables = this.tierTableService.getAllByPaging(offset, limit);
+    //     int totalCount = this.tierTableService.getTotalCount();
+    //     return Response.ok(new PagingResponse<>(tierTables, totalCount)).build();
+    // }
     @GET
     public Response getPage(@RestQuery int offset, @RestQuery int limit) {
-        List<TierTable> tierTables = this.tierTableService.getAllByPaging(offset, limit);
+        List<TierTablePagingDto> tierTables = this.tierTableService.getAllByPaging(offset, limit);
         int totalCount = this.tierTableService.getTotalCount();
         return Response.ok(new PagingResponse<>(tierTables, totalCount)).build();
     }

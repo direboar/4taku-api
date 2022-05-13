@@ -41,7 +41,6 @@ public class HeroService {
             if(!herosFromBattlenet.containsKey(kv.getKey())){
                 Hero removed = herosFromDB.get(kv.getKey());
                 removed.setInvalid(true);
-                this.entityManager.persist(removed);
                 removedList.add(removed);
             }
         });

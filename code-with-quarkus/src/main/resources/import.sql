@@ -28,6 +28,10 @@ create table MinionType (
     name varchar(64) not null,
     imageURL varchar(64) not null   
 );
+create table DeckTrackerHeroNameMapping(
+ deckTrackerHeroName varchar(128) primary key,
+ heroName varchar(128) not null
+);
 
 # https://qiita.com/TakahikoKawasaki/items/8f0e422c7edd2d220e06#72-sub-%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%A0
 create table account(
@@ -179,6 +183,8 @@ insert into TierTable values (10058, 'tier表58',1,null,current_timestamp);
 insert into TierTable values (10059, 'tier表59',1,null,current_timestamp);
 insert into TierTable values (10060, 'tier表60',1,null,current_timestamp);
 insert into TierTable values (10061, 'tier表60',1,'[{"id": "9fdfca66-5f61-459e-9990-c5945e12c7ea", "name": "S", "color": "#FF8A80", "heros": [{"id": 3, "ban": {"exists": ["2", "5", "6", "8", "7"], "notExists": ["4", "3", "1"]}, "memo": "111"}]}, {"id": "a3540270-b27b-4f81-a2bb-fd3efaa1503d", "name": "A", "color": "#FFA726", "heros": [{"id": 9, "ban": {"exists": ["8", "3", "2", "1"], "notExists": ["6", "7", "5", "4"]}, "memo": "bbb"}]}, {"id": "abf55e06-c7ea-4f92-b763-c5ee47cfba55", "name": "B", "color": "#FFD180", "heros": [{"id": 35, "ban": {"exists": ["7", "8", "4", "6", "5", "3", "2", "1"], "notExists": []}, "memo": "ccc"}]}, {"id": "4a871b5c-18dd-4f9e-bbbe-aee8e29944d2", "name": "C", "color": "#FFFF8D", "heros": [{"id": 17, "ban": {"exists": [], "notExists": ["6", "5", "8", "7", "4", "3", "2", "1"]}, "memo": "dddd"}]}, {"id": "0a2b5bad-f308-4beb-a342-d67829d08921", "name": "D", "color": "#CCFF90", "heros": []}]',current_timestamp);
+SELECT SETVAL ('heroid_seq', '100');
+
 insert into MinionType VALUES (1,'獣','./minionTypes/Beast.png');
 insert into MinionType VALUES (2,'悪魔','./minionTypes/Demon.png');
 insert into MinionType VALUES (3,'ドラゴン','./minionTypes/Dragon.png');
@@ -187,3 +193,85 @@ insert into MinionType VALUES (5,'メカ','./minionTypes/Mech.png');
 insert into MinionType VALUES (6,'マーロック','./minionTypes/Murloc.png');
 insert into MinionType VALUES (7,'海賊','./minionTypes/Pirate.png');
 insert into MinionType VALUES (8,'キルボア','./minionTypes/Quilboar.png');
+
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('AFKay','A. F. Kay');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Azshara','Queen Azshara');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('AlAkir','Al''Akir');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Aranna','Aranna Starseeker');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Alexstrasza','Alexstrasza');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Ysera','Ysera');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Ini','Ini Stormcoil');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Illidan','Illidan Stormrage');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Vanndar','Vanndar Stormpike');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Varden','Varden Dawngrasp');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Voljin','Vol''jin');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Edwin','Edwin VanCleef');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Elise','Elise Starseeker');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Onyxia','Onyxia');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Guff','Guff Runetotem');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Galakrond','Galakrond');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Kurtrus','Kurtrus Ashfallen');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Cariel','Cariel Roame');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Curator','The Curator');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Mukla','King Mukla');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('CThun','C''Thun');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Galewing','Galewing');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Kaelthas','Kael''thas Sunstrider');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Cookie','Cookie the Cook');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Silas','Silas Darkmoon');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Xyrella','Xyrella');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Saurfang','Overlord Saurfang');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Finley','Sir Finley Mrrgglton');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Chenvaala','Chenvaala');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Shudderwock','Shudderwock');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Jandice','Jandice Barov');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Sindragosa','Sindragosa');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Scabbs','Scabbs Cutterbutter');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Sneed','Sneed');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Tavish','Tavish Stormpike');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Tamsin','Tamsin Roame');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Deryl','Dancin'' Deryl');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Tickatus','Tickatus');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Tess','Tess Greymane');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Deathwing','Deathwing');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('DrekThar','Drek''Thar');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('RatKing','The Rat King');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Nozdormu','Nozdormu');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Patchwerk','Patchwerk');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Bigglesworth','Mr. Bigglesworth');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Pyramad','Pyramad');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Faelin','Ambassador Faelin');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Hooktusk','Captain Hooktusk');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Brukan','Bru''kan');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Maiev','Maiev Shadowsong');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Nguyen','Master Nguyen');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Malygos','Malygos');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Millificent','Millificent Manastorm');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Millhouse','Millhouse Manastorm');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('YShaarj','Y''Shaarj');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Eudora','Captain Eudora');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Rakanishu','Rakanishu');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('LichKing','The Lich King');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Bazhial','Lich Baz''hial');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Reno','Reno Jackson');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Rokara','Rokara');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Jaraxxus','Lord Jaraxxus');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('LordBarov','Lord Barov');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Wagtoggle','Queen Wagtoggle');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('NZoth','N''Zoth');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Akazamzarak','The Great Akazamzarak');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Zephrys','Zephrys, the Great');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Ragnaros','Ragnaros the Firelord');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Patches','Patches the Pirate');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Greybough','Greybough');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Yogg','Yogg-Saron, Hope''s End');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Brann','Dinotamer Brann');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Flurgl','Fungalmancer Flurgl');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Kragg','Skycap''n Kragg');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Blackthorn','Death Speaker Blackthorn');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Gallywix','Trade Prince Gallywix');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Omu','Forest Warden Omu');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Rafaam','Arch-Villain Rafaam');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('George','George the Fallen');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Toki','Infinite Toki');
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Mutanus','Mutanus the Devourer');

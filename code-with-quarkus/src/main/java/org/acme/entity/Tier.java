@@ -14,6 +14,7 @@ public class Tier {
     private String id; //uuid 
     private String name;
     private String color;
+    private int order;
 
     private List<Hero> heros = new ArrayList<>();
 

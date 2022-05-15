@@ -99,5 +99,4 @@ public class TierTable {
         this.updatedAt = updatedAt;
     }
 
-
 }

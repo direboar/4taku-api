@@ -68,9 +68,9 @@ public class TierTableResource {
     //     return Response.ok(new PagingResponse<>(tierTables, totalCount)).build();
     // }
     @GET
-    public Response getPage(@RestQuery int offset, @RestQuery int limit) {
-        List<TierTablePagingDto> tierTables = this.tierTableService.getAllByPaging(offset, limit);
-        int totalCount = this.tierTableService.getTotalCount();
+    public Response getPage(@RestQuery int offset, @RestQuery int limit,@RestQuery boolean owner,@RestQuery int accountId) {
+        List<TierTablePagingDto> tierTables = this.tierTableService.getAllByPaging(offset, limit,owner,accountId);
+        int totalCount = this.tierTableService.getTotalCount(owner,accountId);
         return Response.ok(new PagingResponse<>(tierTables, totalCount)).build();
     }
 

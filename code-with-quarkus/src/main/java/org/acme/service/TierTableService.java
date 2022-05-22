@@ -50,7 +50,7 @@ public class TierTableService {
     @Transactional
     public void delete(int id) {
         TierTable entity = this.get(id);
-        if(entity != null){
+        if (entity != null) {
             this.entityManager.remove(entity);
         }
     }
@@ -62,31 +62,49 @@ public class TierTableService {
         return entityManager.createQuery(query).getResultList();
     }
 
-    public int getTotalCount() {
-        Query query = entityManager.createNativeQuery("SELECT COUNT(*) FROM TIERTABLE");
+    public int getTotalCount(boolean owner,int accountId) {
+
+        String sql = "SELECT " +
+                " COUNT(*)  " +
+                " FROM TIERTABLE AS A " +
+                "  INNER JOIN ACCOUNT AS B " +
+                "  ON A.OWNERID = B.ID ";
+        if(owner){
+            sql += " AND A.OWNERID = ?1" ;
+        }
+        Query query = entityManager.createNativeQuery(sql);
+        if(owner){
+            query.setParameter(1,accountId);
+        }
         int count = ((Number) query.getSingleResult()).intValue();
         return count;
     }
 
     // public List<TierTable> getAllByPaging(int offset, int limit) {
-    //     CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-    //     CriteriaQuery<TierTable> query = builder.createQuery(TierTable.class);
-    //     Root<TierTable> root = query.from(TierTable.class);
-    //     query.multiselect(root.get("id"), root.get("name"));
-    //     return entityManager.createQuery(query).setFirstResult(offset).setMaxResults(limit).getResultList();
+    // CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+    // CriteriaQuery<TierTable> query = builder.createQuery(TierTable.class);
+    // Root<TierTable> root = query.from(TierTable.class);
+    // query.multiselect(root.get("id"), root.get("name"));
+    // return
+    // entityManager.createQuery(query).setFirstResult(offset).setMaxResults(limit).getResultList();
     // }
 
-    public List<TierTablePagingDto> getAllByPaging(int offset, int limit) {
-        String sql = 
-          "SELECT " +  
-          " A.ID, A.NAME, A.OWNERID , A.UPDATEDAT , B.NAME AS OWNERNAME " +
-          " FROM TIERTABLE AS A " +
-          "  INNER JOIN ACCOUNT AS B " +
-          "  ON A.OWNERID = B.ID " +
-          "  ORDER BY UPDATEDAT DESC" +
-          "  LIMIT " + limit + " " +
-          "  OFFSET " + offset + " ";
-        Query query = this.entityManager.createNativeQuery(sql,"TierTablePagingDtoMapping");
+    public List<TierTablePagingDto> getAllByPaging(int offset, int limit, boolean owner,int accountId) {
+        String sql = "SELECT " +
+                " A.ID, A.NAME, A.OWNERID , A.UPDATEDAT , B.NAME AS OWNERNAME " +
+                " FROM TIERTABLE AS A " +
+                "  INNER JOIN ACCOUNT AS B " +
+                "  ON A.OWNERID = B.ID ";
+        if(owner){
+            sql += " AND A.OWNERID = ?1" ;
+        }
+        sql += "  ORDER BY UPDATEDAT DESC" +
+                "  LIMIT " + limit + " " +
+                "  OFFSET " + offset + " ";
+        Query query = this.entityManager.createNativeQuery(sql, "TierTablePagingDtoMapping");
+        if(owner){
+            query.setParameter(1,accountId);
+        }
         return query.getResultList();
     }
 

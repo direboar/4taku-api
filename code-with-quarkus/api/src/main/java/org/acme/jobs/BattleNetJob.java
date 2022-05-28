@@ -10,6 +10,7 @@ import org.acme.service.BattlenetService;
 import org.acme.service.HeroService;
 import org.jboss.logging.Logger;
 
+@Deprecated
 @ApplicationScoped 
 public class BattleNetJob {
     

@@ -16,7 +16,7 @@ import io.quarkus.security.identity.SecurityIdentity;
 
 @ApplicationScoped
 public class AccountService {
-    
+
     @Inject
     private EntityManager entityManager;
 

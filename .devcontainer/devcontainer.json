@@ -2,46 +2,29 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/docker-existing-dockerfile
 {
 	"name": "Existing Dockerfile",
-
-	// Sets the run context to one level up instead of the .devcontainer folder.
-	"context": "..",
-
-	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "../Dockerfile",
-
+	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+	"dockerComposeFile": "docker-compose.yml",
+	// The 'service' property is the name of the service for the container that VS Code should
+	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+	"service": "quarkus",
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a volume mount in .devcontainer/docker-compose.yml
+	"workspaceFolder": "/workspace",
 	// Set *default* container specific settings.json values on container create.
 	"settings": {},
-	
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"redhat.vscode-quarkus", //quarkus plugin
-        "MS-CEINTL.vscode-language-pack-ja", //日本語化 plugin
-        "redhat.vscode-quarkus", //quarkus plugin
+		"MS-CEINTL.vscode-language-pack-ja", //日本語化 plugin
+		"redhat.vscode-quarkus", //quarkus plugin
 		"ckolkman.vscode-postgres",
-		"GabrielBB.vscode-lombok" //lombok
+		"GabrielBB.vscode-lombok", //lombok
+		"redhat.vscode-xml"
 	],
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [ 8080, 8080],
-
-	"appPort": [ "8080", "8080" ],
-
-	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	// "postCreateCommand": "apt-get update && apt-get install -y curl",
-
-	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
-	// "runArgs": [ "-e TESTCONTAINERS_HOST_OVERRIDE=docker.for.mac.host.internal" ],
-
-	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
-	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
-
-	// testcontainerを動かすための設定。以下を参考にしたがなぜこれでいいかわからず
-	// https://stackoverflow.com/questions/69695411/dockerfile-testcontainers-can-not-connect-to-ryuk
-	// https://qiita.com/kai_kou/items/5182965ea75c85cf1e3f
-    "containerEnv": {
-		"TESTCONTAINERS_HOST_OVERRIDE" : "host.docker.internal"
-	}
-
-	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	"forwardPorts": [
+		5432,
+		8080,
+		9999
+	]
 }

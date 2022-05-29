@@ -26,7 +26,7 @@
     </dependency>
   </dependencies>
 
-  <build>
+  <!-- <build>
     <plugins>
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
@@ -45,7 +45,10 @@
         <artifactId>jandex-maven-plugin</artifactId>
       </plugin>
     </plugins>
-  </build>
+  </build> -->
+
+  <!-- <build>define at parent pom. </build> -->
+
   <profiles>
     <profile>
       <id>native</id>

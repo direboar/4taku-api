@@ -72,7 +72,9 @@
       <artifactId>rest-assured</artifactId>
     </dependency>
   </dependencies>
-  <!-- <build>define parent pom. </build> -->
+
+  <!-- <build>define at parent pom. </build> -->
+ 
   <profiles>
     <profile>
       <id>native</id>

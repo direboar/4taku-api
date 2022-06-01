@@ -1,4 +1,4 @@
-package yontaku.service;
+package yontaku.utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,17 +41,16 @@ public class BattlenetService {
             // Add @Blocking method annotation if this code is used with Reactive RestClient
             this.currentTokens = client.refreshTokens(this.currentTokens.getRefreshToken()).await().indefinitely();
         }
-
         Client client = ClientBuilder.newBuilder().build();
         WebTarget target = client.target(
                 "https://us.api.blizzard.com/hearthstone/cards?:region=us&gameMode=battlegrounds&tier=hero&pageSize=100");
-    
+
         try (Response response = target.request()
                 .header("Authorization", "Bearer " + this.currentTokens.getAccessToken())
                 .get();) {
 
             // FIXME 型変換 本当はBeanにマッピングしたいが、属性が不足しているBeanにデフォルトの動作ではマッピングできない。
-            //       やり方がどこかに転がっていたので探す？
+            // やり方がどこかに転がっていたので探す？
             Object o = response.readEntity(HashMap.class).get("cards");
 
             if (o instanceof List) {
@@ -71,10 +70,9 @@ public class BattlenetService {
             Integer id = (Integer) map.get("id");
             Map<String, String> name = (Map) map.get("name");
             Map<String, String> image = (Map) map.get("image");
-            return new Hero(id, name.get("en_US"), name.get("ja_JP"), image.get("ja_JP"),false);
+            return new Hero(id, name.get("en_US"), name.get("ja_JP"), image.get("ja_JP"), false);
         } else {
             return null;
         }
     }
 }
-

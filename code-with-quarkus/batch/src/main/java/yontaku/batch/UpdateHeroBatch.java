@@ -7,12 +7,11 @@ import javax.inject.Inject;
 import org.jboss.logging.Logger;
 
 import io.quarkus.runtime.QuarkusApplication;
-import io.quarkus.runtime.annotations.QuarkusMain;
 import yontaku.entity.Hero;
-import yontaku.service.BattlenetService;
 import yontaku.service.HeroService;
+import yontaku.utils.BattlenetService;
 
-@QuarkusMain
+// @QuarkusMain
 public class UpdateHeroBatch implements QuarkusApplication {
    private static final Logger LOG = Logger.getLogger(UpdateHeroBatch.class);
 

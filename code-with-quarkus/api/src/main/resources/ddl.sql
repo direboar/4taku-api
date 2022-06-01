@@ -2,6 +2,10 @@ drop table if exists gift;
 drop table if exists Hero;
 drop table if exists TierTable;
 drop table if exists MinionType;
+drop table if exists MinderRanking;
+drop table if exists MinderRankingDetail;
+drop table if exists DeckTrackerHeroNameMapping;
+drop table if exists account;
 
 create table gift(
     id   int primary key,
@@ -33,10 +37,31 @@ create table DeckTrackerHeroNameMapping(
  heroName varchar(128) not null
 );
 
-# https://qiita.com/TakahikoKawasaki/items/8f0e422c7edd2d220e06#72-sub-%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%A0
 create table account(
     id int primary key,  
     oicdUserName varchar(255) unique not null,
-    name varchar(128) not null,
-    tableTierId int
+    name varchar(128),
+    tierTableId int
 );
+
+create table MinderRanking (
+  id int4 not null,
+  coinCurve1 varchar(128),
+  coinCurve2 varchar(128),
+  heroName varchar(128),
+  ranking varchar(64),
+  primary key (id)
+);
+
+create table MinderRankingDetail (
+  id int4 not null,
+  minionType varchar(64),
+  ranking varchar(128),
+  rankingId int4,
+  primary key (id)
+);
+
+alter table if exists MinderRankingDetail 
+  add constraint FKnicw6um2k1yimd7msqrqs94xf 
+  foreign key (rankingId) 
+  references MinderRanking;

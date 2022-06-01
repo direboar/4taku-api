@@ -10,10 +10,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import io.quarkus.security.Authenticated;
 import yontaku.entity.MinderRanking;
 import yontaku.service.MinderRankingRepository;
 
-// @Authenticated
+@Authenticated
 @Path("/minderranking")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

@@ -37,6 +37,7 @@ public class AccountResource {
     public AccountRestView init(){
         Account account = this.accountService.getOrInitializeAccount();
         TierTable tierTable = null;
+        
         if(account.getTierTableId() != null){
             tierTable = this.tierTableService.get(account.getTierTableId());
         }

@@ -79,7 +79,7 @@ INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(78,636
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(79,80247,'Vanndar Stormpike','ヴァンダル・ストームパイク','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8158bce864426f5d656e6d37f1ba3bec3b069faf7d64583036359c24eb400845.png',false);
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(80,79615,'Varden Dawngrasp','ヴァーデン・ドーングラスプ','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4040fa5178622ee142c803ac0d9fdde9b43906bc0793570491d42aeab8d2c250.png',false);
 INSERT INTO hero(id,battlenetid,name,displayname,imageurl,invalid) VALUES(81,79618,'Queen Azshara','アズシャラ女王','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/648eb1f5831f821d0e4c8c4fd8e2ae34aec8e90e36d7ea778935857220cccf69.png',false);
-SELECT SETVAL ('hero_seq', '81');
+SELECT SETVAL ('heroid_seq', '81');
 
 insert into MinionType VALUES (1,'Beast','./minionTypes/Beast.png');
 insert into MinionType VALUES (2,'Demons','./minionTypes/Demon.png');

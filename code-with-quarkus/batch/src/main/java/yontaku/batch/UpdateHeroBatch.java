@@ -11,7 +11,7 @@ import yontaku.entity.Hero;
 import yontaku.service.HeroService;
 import yontaku.utils.BattlenetService;
 
-// @QuarkusMain
+// @QuarkusMain()
 public class UpdateHeroBatch implements QuarkusApplication {
    private static final Logger LOG = Logger.getLogger(UpdateHeroBatch.class);
 

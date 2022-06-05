@@ -5,7 +5,7 @@ drop table if exists MinderRankingDetail;
 drop table if exists MinderRanking;
 drop table if exists DeckTrackerHeroNameMapping;
 drop table if exists account;
-drop SEQUENCE if exists hero_seq ;
+drop SEQUENCE if exists heroid_seq ;
 drop SEQUENCE if exists tiertable_seq ;
 drop SEQUENCE if exists accountid_seq ;
 drop SEQUENCE if exists minder_ranking_detail_sec;
@@ -18,7 +18,7 @@ create table Hero(
     imageURL varchar(128) not null,
     invalid boolean default false
 );
-CREATE SEQUENCE hero_seq START 1;
+CREATE SEQUENCE heroid_seq START 1;
 
 create table TierTable(
     id   int primary key,

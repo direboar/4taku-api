@@ -21,8 +21,8 @@ Windows上からlocalhost:8080でアクセス可能。
 
 #### docker-image (see src/main/docker/Dockerfile.jvm)
 1. ./mvnw clean package
-2. docker build -f src/main/docker/Dockerfile.jvm -t minokuba/4taku-api-api .
-3. docker run -i --rm -p 8080:8080 minkuba/4taku-api-api
-4. docker build -f src/main/docker/Dockerfile.jvm -t minokuba/4taku-api-batch .
-5. docker run -i --rm -p 8080:8080 minkuba/4taku-api-batch
+2. ../mvnw clean package -Dquarkus.container-image.build=true (api)
+3. docker run -i --rm -p 8080:8080 minokuba/4taku-api
+4. ../mvnw clean package -Dquarkus.container-image.build=true (batch)
+5. docker run -i --rm -p 8080:8080 minokuba/4taku-batch
 ##### 補足 host上で　api/src/main/docker-compose.yamlでAPIが動くことは確認済み。

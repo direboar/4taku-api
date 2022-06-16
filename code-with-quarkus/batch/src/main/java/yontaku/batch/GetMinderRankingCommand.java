@@ -14,7 +14,7 @@ import yontaku.utils.MinderRankingService;
 @CommandLine.Command(name = "get-minder-ranking", description = "get-minder-ranking")
 // @QuarkusMain(name="get-minder-ranking")
 public class GetMinderRankingCommand implements Runnable {
-    private static final Logger LOG = Logger.getLogger(UpdateHeroBatch.class);
+    private static final Logger LOG = Logger.getLogger(GetMinderRankingCommand.class);
 
     @Inject
     private MinderRankingService minderRankingService;

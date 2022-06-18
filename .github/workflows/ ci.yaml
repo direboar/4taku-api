@@ -23,8 +23,8 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
-
       - name: Build with Mavenw
+        ## latestと、commit-hashのタグでdocker-hubにpush
         run: ./mvnw clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.additional-tags=${{github.sha}}
 
   update-manifests:

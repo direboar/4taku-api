@@ -24,4 +24,4 @@ jobs:
           cache: maven
 
       - name: Build with Mavenw
-        run: ./mvnw clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
+        run: ./mvnw clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.additional-tags=${{github.sha}}

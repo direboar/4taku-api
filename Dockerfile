@@ -27,8 +27,10 @@ RUN groupmod -g 1001 docker
 USER myuser
 
 #permissionを指定してCOPYする。
-COPY --chmod=777 ./code-with-quarkus/ /app/code-with-quarkus/
-WORKDIR /app/code-with-quarkus
-RUN ./mvnw install -Dmaven.test.skip
+COPY --chmod=777 . .
+#mvnwを解決できなくなってしまった。。一旦mvnwの実行をRUNで行わないようにする。
+# COPY --chmod=777 . /app/
+# WORKDIR /app/
+# RUN ./mvnw install -Dmaven.test.skip
     
 # CMD ./mvnw quarkus:dev

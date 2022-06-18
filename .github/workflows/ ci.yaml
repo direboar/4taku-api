@@ -1,12 +1,13 @@
 name: ci
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-push:
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
 
@@ -25,3 +26,20 @@ jobs:
 
       - name: Build with Mavenw
         run: ./mvnw clean package -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.additional-tags=${{github.sha}}
+
+  update-manifests:
+    runs-on: ubuntu-18.04
+    needs: build-and-push
+    timeout-minutes: 300
+    env:
+      MANIFEST_REPOSITORY: direboar/4taku-manifest
+    steps:
+    # repository-dispatchを使って、マニフェストリポジトリに対して通知
+    # その際に、Dockerイメージにタグつけしたコミットハッシュを合わせて送信
+    - name: dispatch update-manifests
+      uses: peter-evans/repository-dispatch@v1.1.3
+      with:
+        repository: ${{ env.MANIFEST_REPOSITORY }}
+        token: ${{ secrets.YONTAKU_REPOSITORY_DISPATCH_TOKEN }}
+        event-type: update-manifest
+        client-payload: '{"sha": "${{ github.sha }}"}'

@@ -85,4 +85,3 @@ Windows上からlocalhost:8080でアクセス可能。
 5. docker run -i --rm -p 8080:8080 minokuba/4taku-batch
 ##### 補足 host上で　api/src/main/docker-compose.yamlでAPIが動くことは確認済み。
 
-

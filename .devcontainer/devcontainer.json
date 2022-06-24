@@ -11,6 +11,12 @@
 	// connected. This is typically a volume mount in .devcontainer/docker-compose.yml
 	"workspaceFolder": "/workspace",
 	// Set *default* container specific settings.json values on container create.
+	// "workspaceMount" : "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+	// "mounts" : [
+	// 	"source=dummy,target=/workspace/api/target/,type=bind,consistency=cached",
+	// 	"source=dummy,target=/workspace/batch/target/,type=bind,consistency=cached",
+	// 	"source=dummy,target=/workspace/service/target/,type=bind,consistency=cached"
+	// ],
 	"settings": {},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [

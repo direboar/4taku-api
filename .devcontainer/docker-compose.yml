@@ -5,10 +5,17 @@ services:
     build: 
       context: ..
       dockerfile: Dockerfile
+    environment : 
+      - AUTH0_CLIENT_ID=${AUTH0_CLIENT_ID}
+      - AUTH0_AUTH_SERVER_URL=${AUTH0_AUTH_SERVER_URL}
+      - AUTH0_AUDIENCE=${AUTH0_AUDIENCE}
+      - OICD_BATTLENET_TOKEN_PATH=${OICD_BATTLENET_TOKEN_PATH}
+      - OICD_BATTLENET_CLIENT_ID=${OICD_BATTLENET_CLIENT_ID}
+      - OICD_BATTLENET_SECRET=${OICD_BATTLENET_SECRET}
+      
       # [Optional] You can use build args to set options. e.g. 'VARIANT' below affects the image in the Dockerfile
       # args: 
       #   VARIANT: buster
-
     volumes:
       # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
       - ..:/workspace:cached

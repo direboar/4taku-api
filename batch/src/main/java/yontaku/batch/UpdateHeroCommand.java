@@ -13,7 +13,7 @@ import yontaku.utils.BattlenetService;
 @CommandLine.Command(name = "update-hero", description = "update-hero")
 public class UpdateHeroCommand implements Runnable {
     
-    private static final Logger LOG = Logger.getLogger(UpdateHeroBatch.class);
+    private static final Logger LOG = Logger.getLogger(UpdateHeroCommand.class);
 
     @Inject
     private BattlenetService battlenetService;

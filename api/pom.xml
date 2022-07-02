@@ -76,6 +76,12 @@
       <artifactId>code-with-quarkus-service</artifactId>
     </dependency>
 
+    <!-- Flyway specific dependencies -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-flyway</artifactId>
+    </dependency>
+
     <!--tests-->
     <dependency>
       <groupId>io.quarkus</groupId>

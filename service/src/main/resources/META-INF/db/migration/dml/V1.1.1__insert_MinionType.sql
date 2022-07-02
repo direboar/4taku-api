@@ -1,0 +1,9 @@
+insert into MinionType VALUES (1,'Beast','./minionTypes/Beast.png');
+insert into MinionType VALUES (2,'Demons','./minionTypes/Demon.png');
+insert into MinionType VALUES (3,'Dragons','./minionTypes/Dragon.png');
+insert into MinionType VALUES (4,'Elementals','./minionTypes/Elemental.png');
+insert into MinionType VALUES (5,'Mechs','./minionTypes/Mech.png');
+insert into MinionType VALUES (6,'Murlocs','./minionTypes/Murloc.png');
+insert into MinionType VALUES (7,'Pirates','./minionTypes/Pirate.png');
+insert into MinionType VALUES (8,'Quillboar','./minionTypes/Quilboar.png');
+insert into MinionType VALUES (9,'Naga','./minionTypes/Naga.png');

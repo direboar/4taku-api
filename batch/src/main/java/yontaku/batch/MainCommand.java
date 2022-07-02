@@ -7,7 +7,7 @@ import io.quarkus.runtime.annotations.QuarkusMain;
 import picocli.CommandLine;
 
 @QuarkusMain
-@CommandLine.Command(mixinStandardHelpOptions = true, subcommands = { UpdateHeroCommand.class,GetMinderRankingCommand.class})
+@CommandLine.Command(mixinStandardHelpOptions = true, subcommands = { UpdateHeroCommand.class,GetMinderRankingCommand.class, MigrateFlywayCommand.class})
 public class MainCommand implements QuarkusApplication {
     @Inject
     CommandLine.IFactory factory; 

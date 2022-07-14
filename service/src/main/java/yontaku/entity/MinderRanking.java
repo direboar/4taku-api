@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -19,7 +20,7 @@ public class MinderRanking {
     @SequenceGenerator(name = "minder_ranking_seq", sequenceName = "minder_ranking_seq", allocationSize = 1)
     private int id;
 
-    private String heroName;
+    private String minderRankingHeroName;
 
     private String ranking;
 
@@ -27,10 +28,16 @@ public class MinderRanking {
 
     private String coinCurve2;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    private Boolean invalid;
+
+    // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "rankingId")
-    // @OneToMany(mappedBy = "minderRankingId", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private List<MinderRankingDetail> details;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "heroId")
+    private Hero hero;
 
     public int getId() {
         return id;
@@ -40,12 +47,12 @@ public class MinderRanking {
         this.id = id;
     }
 
-    public String getHeroName() {
-        return heroName;
+    public String getMinderRankingHeroName() {
+        return minderRankingHeroName;
     }
 
-    public void setHeroName(String heroName) {
-        this.heroName = heroName;
+    public void setMinderRankingHeroName(String minderRankingHeroName) {
+        this.minderRankingHeroName = minderRankingHeroName;
     }
 
     public String getRanking() {
@@ -80,5 +87,20 @@ public class MinderRanking {
         this.details = details;
     }
 
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public Boolean getInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(Boolean invalid) {
+        this.invalid = invalid;
+    }
 
 }

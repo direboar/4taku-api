@@ -10,6 +10,7 @@ import yontaku.entity.Hero;
 import yontaku.service.HeroService;
 import yontaku.utils.BattlenetService;
 
+//FIXME Heroの関連を維持したまま更新する
 @CommandLine.Command(name = "update-hero", description = "update-hero")
 public class UpdateHeroCommand implements Runnable {
     

@@ -23,8 +23,9 @@ import org.jboss.logging.Logger;
 import yontaku.entity.MinderRanking;
 import yontaku.entity.MinderRankingDetail;
 
+
 @ApplicationScoped
-public class MinderRankingService {
+public class MinderRankingExternalService {
     private static final Logger LOG = Logger.getLogger(BattlenetService.class);
 
     @Transactional
@@ -87,7 +88,7 @@ public class MinderRankingService {
         // "Akazamzarak","C","4.2","Slow Rafaam Curve","Rafaam
         // Curve","Link","Helpful","Helpful","Irrellevant","Irrellevant","Irrellevant","Helpful","Irrellevant","Irrellevant","Avoid","","","","","","","","","","",""
         MinderRanking minderRanking = new MinderRanking();
-        minderRanking.setHeroName(record.get(0));
+        minderRanking.setMinderRankingHeroName(record.get(0));
         minderRanking.setRanking(record.get(1));
         minderRanking.setCoinCurve1(record.get(3));
         minderRanking.setCoinCurve2(record.get(4));

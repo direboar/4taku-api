@@ -18,7 +18,6 @@ import yontaku.rest.dto.TierTableListView;
 import yontaku.rest.dto.TierTableRestView;
 import yontaku.rest.dto.TierTableUpdateRequest;
 import yontaku.service.AccountService;
-import yontaku.service.MinionTypeService;
 
 @Mapper(componentModel = "cdi")
 public abstract class TierTableMapper {
@@ -26,10 +25,7 @@ public abstract class TierTableMapper {
     @Inject
     private AccountService accountService;
 
-    @Inject
-    private MinionTypeService minionTypeService;
-
-    // TierTable更新リクエストをTierTableEntityにマッピング。
+    // ---- TierTable更新リクエストをTierTableEntityにマッピング。---- //
     @Mapping(target = "owner", source = "tierTable.ownerid")
     public abstract TierTable restTierTableUpdateRequestToTierTable(TierTableUpdateRequest tierTable);
     public Account accountIdToAccountEntity(int ownerid) {
@@ -46,6 +42,7 @@ public abstract class TierTableMapper {
         heroEvaluation.setId(hero.getEvaluationId());
         heroEvaluation.setBan(banToBanEntity(hero.getBan()));
         heroEvaluation.setEvaluationOrder(hero.getEvaluationOrder());
+        heroEvaluation.setHeroMemoURL(hero.getHeroMemoURL());
         Hero heroEntity = this.heroToHeroEntity(hero);
         heroEvaluation.setHero(heroEntity);
         return heroEvaluation;
@@ -53,7 +50,7 @@ public abstract class TierTableMapper {
     public abstract Hero heroToHeroEntity(TierTableUpdateRequest.Hero hero);
     public abstract HeroEvaluation.Ban banToBanEntity(TierTableUpdateRequest.Ban ban);
 
-    // TierTableEntityをTierTable取得時のレスポンスにマッピング。
+    // ---- TierTableEntityをTierTable取得時のレスポンスにマッピング。 ---- //
     public TierTableRestView entityHeroToTierTableRestView(TierTable tierTable) {
         return entityHeroToTierTableRestView(tierTable, tierTable.getOwner());
     }
@@ -79,10 +76,10 @@ public abstract class TierTableMapper {
     @Mapping(target = "evaluationOrder", source = "heroEvaluation.evaluationOrder")
     @Mapping(target = "ban", source = "heroEvaluation.ban")
     @Mapping(target = "memo", source = "heroEvaluation.memo")
+    @Mapping(target = "heroMemoURL", source = "heroEvaluation.heroMemoURL")
     public abstract TierTableRestView.Hero entityTierToTierRestView(HeroEvaluation heroEvaluation, Hero hero,
             DeckTrackerHeroNameMapping deckTrackerHeroNameMapping);
 
-    
     /** 
      * EntityのBANをREST返却形式のBANに返却する。
      * なお、ここではデータ構造をEntityのBANに変換するが、MinionTypeのコピー処理ではここでは行わずに外部で実施する。
@@ -95,15 +92,20 @@ public abstract class TierTableMapper {
     public TierTableRestView.Ban entityBanToBanRestView(Ban ban) {
         TierTableRestView.Ban retVal = new TierTableRestView.Ban();
 
-        ban.getExists().forEach(minionTypeID -> {
+        ban.getRequired().forEach(minionTypeID -> {
             TierTableRestView.MinionType minionType = new TierTableRestView.MinionType();
             minionType.setId(minionTypeID);
-            retVal.getExists().add(minionType);
+            retVal.getRequired().add(minionType);
         });
-        ban.getNotExists().forEach(minionTypeID -> {
+        ban.getDesierd().forEach(minionTypeID -> {
             TierTableRestView.MinionType minionType = new TierTableRestView.MinionType();
             minionType.setId(minionTypeID);
-            retVal.getNotExists().add(minionType);
+            retVal.getDesierd().add(minionType);
+        });
+        ban.getNeedless().forEach(minionTypeID -> {
+            TierTableRestView.MinionType minionType = new TierTableRestView.MinionType();
+            minionType.setId(minionTypeID);
+            retVal.getNeedless().add(minionType);
         });
         return retVal;
     }

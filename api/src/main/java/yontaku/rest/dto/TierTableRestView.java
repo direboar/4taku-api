@@ -40,16 +40,16 @@ public class TierTableRestView{
         private int evaluationOrder;
         private Ban ban;
         private String memo;
-
+        private String heroMemoURL;
     }
 
     @Getter 
     @Setter 
     @ToString
     public static class Ban{
-        private List<MinionType> exists = new ArrayList<>();
-        private List<MinionType> notExists = new ArrayList<>();
-
+        private List<MinionType> required = new ArrayList<>();
+        private List<MinionType> desierd = new ArrayList<>();
+        private List<MinionType> needless = new ArrayList<>();
     }
 
     @Getter 

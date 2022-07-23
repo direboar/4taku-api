@@ -77,11 +77,15 @@ public class TierTableResource {
                 .collect(Collectors.toMap(item -> item.getId(), item -> item));
         view.getTiers().forEach(tier->{
             tier.getHeros().forEach(he->{
-                he.getBan().getExists().forEach(ban->{
+                he.getBan().getRequired().forEach(ban->{
                     MinionType minionType = minionTypesFromDB.get(ban.getId());
                     this.tierTableMapper.updateMinionType(minionType, ban);
                 });
-                he.getBan().getNotExists().forEach(ban->{
+                he.getBan().getDesierd().forEach(ban->{
+                    MinionType minionType = minionTypesFromDB.get(ban.getId());
+                    this.tierTableMapper.updateMinionType(minionType, ban);
+                });
+                he.getBan().getNeedless().forEach(ban->{
                     MinionType minionType = minionTypesFromDB.get(ban.getId());
                     this.tierTableMapper.updateMinionType(minionType, ban);
                 });

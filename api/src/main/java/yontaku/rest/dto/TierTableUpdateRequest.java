@@ -37,15 +37,16 @@ public class TierTableUpdateRequest {
         private int evaluationOrder;
         private Ban ban;
         private String memo;
+        private String heroMemoURL;
     }
 
     @Getter 
     @Setter 
     @ToString
     public static class Ban{
-        private List<Integer> exists ;
-        private List<Integer> notExists ;
-
+        private List<Integer> required ;
+        private List<Integer> desierd ;
+        private List<Integer> needless ;
     }
 
 }

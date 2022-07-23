@@ -53,6 +53,8 @@ public class HeroEvaluation {
 
     private String memo;
 
+    private String heroMemoURL;
+
     private int evaluationOrder;
 
     public int getId() {
@@ -95,6 +97,14 @@ public class HeroEvaluation {
         this.memo = memo;
     }
 
+    public String getHeroMemoURL() {
+        return heroMemoURL;
+    }
+
+    public void setHeroMemoURL(String heroMemoURL) {
+        this.heroMemoURL = heroMemoURL;
+    }
+
     public boolean isNew(){
         return this.id == 0;
     }
@@ -103,8 +113,9 @@ public class HeroEvaluation {
     @Setter 
     @ToString
     public static class Ban{
-        private List<Integer> exists ;
-        private List<Integer> notExists ;
+        private List<Integer> required ;
+        private List<Integer> desierd ;
+        private List<Integer> needless ;
     }
 
 }

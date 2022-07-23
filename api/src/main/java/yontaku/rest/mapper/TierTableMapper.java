@@ -1,12 +1,10 @@
 package yontaku.rest.mapper;
 
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import javax.inject.Inject;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import yontaku.entity.Account;
 import yontaku.entity.DeckTrackerHeroNameMapping;
@@ -84,26 +82,35 @@ public abstract class TierTableMapper {
     public abstract TierTableRestView.Hero entityTierToTierRestView(HeroEvaluation heroEvaluation, Hero hero,
             DeckTrackerHeroNameMapping deckTrackerHeroNameMapping);
 
-    //FIXME トランザクション外で変換しているので、一時キャッシュが有効にならない。
-    //      トランザクション境界に処理を持ち込むか、BanをテーブルにしてMinionTypeとの関連をEntityのリレーションで扱う。
-    //      二次キャッシュとする案もあるが、バッチ処理完了後にトリガーをもらってキャッシュリフレッシュする必要がありちょっと面倒。
+    
+    /** 
+     * EntityのBANをREST返却形式のBANに返却する。
+     * なお、ここではデータ構造をEntityのBANに変換するが、MinionTypeのコピー処理ではここでは行わずに外部で実施する。
+     * このメソッドは都度呼び出されるが、このメソッドは現状トランザクション外で呼び出されるため、JPAの一時キャッシュが有効にならず、DBへの都度アクセスが発生するため。
+     * そのため一旦、ResourceクラスでまとめてMinionTypeの取得を行った後で後で補完するようにしている。
+     * トランザクション境界をリソースクラスにしたほうが良いかも。データ変換をサービス層に持っていく案もある。
+     * @param ban
+     * @return Ban
+     */
     public TierTableRestView.Ban entityBanToBanRestView(Ban ban) {
-        Map<Integer, MinionType> minionTypesFromDB = this.minionTypeService.getAll().stream()
-                .collect(Collectors.toMap(item -> item.getId(), item -> item));
         TierTableRestView.Ban retVal = new TierTableRestView.Ban();
 
         ban.getExists().forEach(minionTypeID -> {
-            MinionType minionType = minionTypesFromDB.get(minionTypeID);
-            retVal.getExists().add(entityTierToTierRestView(minionType));
+            TierTableRestView.MinionType minionType = new TierTableRestView.MinionType();
+            minionType.setId(minionTypeID);
+            retVal.getExists().add(minionType);
         });
         ban.getNotExists().forEach(minionTypeID -> {
-            MinionType minionType = minionTypesFromDB.get(minionTypeID);
-            retVal.getNotExists().add(entityTierToTierRestView(minionType));
+            TierTableRestView.MinionType minionType = new TierTableRestView.MinionType();
+            minionType.setId(minionTypeID);
+            retVal.getNotExists().add(minionType);
         });
         return retVal;
     }
     public abstract TierTableRestView.MinionType entityTierToTierRestView(MinionType minionType);
 
+    public abstract void updateMinionType(MinionType minionType, @MappingTarget TierTableRestView.MinionType target);
+        
     //一覧検索用のRestViewへの変換
     @Mapping(target = "id", source = "tierTable.id")
     @Mapping(target = "name", source = "tierTable.name")

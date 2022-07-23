@@ -1,6 +1,7 @@
 package yontaku.rest;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -18,12 +19,14 @@ import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestQuery;
 
 import io.quarkus.security.Authenticated;
+import yontaku.entity.MinionType;
 import yontaku.entity.TierTable;
 import yontaku.rest.dto.PagingResponse;
 import yontaku.rest.dto.TierTableListView;
 import yontaku.rest.dto.TierTableRestView;
 import yontaku.rest.dto.TierTableUpdateRequest;
 import yontaku.rest.mapper.TierTableMapper;
+import yontaku.service.MinionTypeService;
 import yontaku.service.TierTableService;
 
 @Authenticated
@@ -38,6 +41,9 @@ public class TierTableResource {
 
     @Inject
     private TierTableService tierTableService;
+
+    @Inject
+    private MinionTypeService minionTypeService;
 
     @POST
     public Response save(TierTableUpdateRequest tierTable) {
@@ -62,7 +68,26 @@ public class TierTableResource {
             Response.status(Status.NOT_FOUND).build();
         }
         TierTableRestView view = tierTableMapper.entityHeroToTierTableRestView(tierTable);
+        fillMinionType(view);
         return Response.ok(view).build(); 
+    }
+
+    private void fillMinionType(TierTableRestView view){
+        Map<Integer, MinionType> minionTypesFromDB = this.minionTypeService.getAll().stream()
+                .collect(Collectors.toMap(item -> item.getId(), item -> item));
+        view.getTiers().forEach(tier->{
+            tier.getHeros().forEach(he->{
+                he.getBan().getExists().forEach(ban->{
+                    MinionType minionType = minionTypesFromDB.get(ban.getId());
+                    this.tierTableMapper.updateMinionType(minionType, ban);
+                });
+                he.getBan().getNotExists().forEach(ban->{
+                    MinionType minionType = minionTypesFromDB.get(ban.getId());
+                    this.tierTableMapper.updateMinionType(minionType, ban);
+                });
+            });
+        });
+
     }
 
     @GET

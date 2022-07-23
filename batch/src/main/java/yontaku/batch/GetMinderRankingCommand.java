@@ -29,12 +29,8 @@ public class GetMinderRankingCommand implements Runnable {
     public void run() {
         LOG.info("start job!");
 
-        // this.minderRankingRepository.purge();
         List<MinderRanking> rankings = this.minderRankingExternalService.getMinderRanking();
-        // rankings.forEach(ranking -> {
         this.minderRankingService.updateMinderRanking(rankings);
-        // this.minderRankingRepository.save(ranking);
-        // });
         LOG.info(rankings.size());
         LOG.info("end job!!!");
         LOG.info(rankings.size());

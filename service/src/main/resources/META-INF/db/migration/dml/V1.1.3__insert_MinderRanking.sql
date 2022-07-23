@@ -79,3 +79,4 @@ insert into MinderRanking values(78,'Fast Basic Curve','Slow Jeef Curve','Zephry
 insert into MinderRanking values(79,'Fast Basic Curve','None','Ambassador Faelin',null,' A+');
 insert into MinderRanking values(80,'Warrior Curve','None','Ini Stormcoil',null,'F');
 SELECT SETVAL ('minder_ranking_seq', '80');
+

@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.junit.jupiter.api.Test;
-
 import io.quarkus.test.junit.QuarkusTest;
 import yontaku.entity.MinderRanking;
 
@@ -18,7 +16,7 @@ public class MinderRankingRepositoryTest {
     @Inject
     private MinderRankingRepository repository;
 
-    @Test
+    // @Test
     public void test() {
         List<MinderRanking> list = this.repository.getAllValid();
         assertTrue(list.size() > 0);

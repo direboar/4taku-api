@@ -40,21 +40,21 @@ public class MinderRankingService {
         // 3.minderRankingのデータを更新する。
         latestsMap.entrySet().forEach(kv -> {
             if (fromDbMap.containsKey(kv.getKey())) {
-
                 // update
                 MinderRanking rankingLatetsts = latestsMap.get(kv.getKey());
                 MinderRanking rankingFromDb = fromDbMap.get(kv.getKey());
-                this.repository.deleteDetails(rankingFromDb);
-
+ 
                 rankingFromDb.setRanking(rankingLatetsts.getRanking());
                 rankingFromDb.setCoinCurve1(rankingLatetsts.getCoinCurve1());
                 rankingFromDb.setCoinCurve2(rankingLatetsts.getCoinCurve2());
-                rankingFromDb.setDetails(rankingLatetsts.getDetails());
+                rankingFromDb.replaceDetail(rankingLatetsts.getDetails());
                 rankingFromDb.setInvalid(false);
-                this.repository.save(rankingFromDb);
+                this.repository.merge(rankingFromDb);
+                
             } else {
                 MinderRanking rankingLatetsts = latestsMap.get(kv.getKey());
-                this.repository.save(rankingLatetsts);
+                rankingLatetsts.setInvalid(false);
+                this.repository.persist(rankingLatetsts);
             }
         });
     }

@@ -1,6 +1,7 @@
 package yontaku.rest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -18,8 +19,8 @@ import org.jboss.resteasy.reactive.RestQuery;
 
 import io.quarkus.security.Authenticated;
 import yontaku.entity.TierTable;
-import yontaku.entity.dto.TierTablePagingDto;
 import yontaku.rest.dto.PagingResponse;
+import yontaku.rest.dto.TierTableListView;
 import yontaku.rest.dto.TierTableRestView;
 import yontaku.rest.dto.TierTableUpdateRequest;
 import yontaku.rest.mapper.TierTableMapper;
@@ -66,7 +67,10 @@ public class TierTableResource {
 
     @GET
     public Response getPage(@RestQuery int offset, @RestQuery int limit,@RestQuery boolean owner,@RestQuery int accountId) {
-        List<TierTablePagingDto> tierTables = this.tierTableService.getAllByPaging(offset, limit,owner,accountId);
+        List<TierTableListView> tierTables = this.tierTableService.getAllByPaging(offset, limit,owner,accountId)
+            .stream()
+            .map(t->tierTableMapper.tierTableAndAccountToTierTableListView(t, t.getOwner()))
+            .collect(Collectors.toList());
         int totalCount = this.tierTableService.getTotalCount(owner,accountId);
         return Response.ok(new PagingResponse<>(tierTables, totalCount)).build();
     }

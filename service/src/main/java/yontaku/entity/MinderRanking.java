@@ -1,6 +1,6 @@
 package yontaku.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,12 +30,10 @@ public class MinderRanking {
 
     private Boolean invalid;
 
-    // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "rankingId")
-    private List<MinderRankingDetail> details;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER,mappedBy = "minderRanking") 
+    private Set<MinderRankingDetail> details ;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER) //no cascade.
     @JoinColumn(name = "heroId")
     private Hero hero;
 
@@ -79,12 +77,31 @@ public class MinderRanking {
         this.coinCurve2 = coinCurve2;
     }
 
-    public List<MinderRankingDetail> getDetails() {
+    public Set<MinderRankingDetail> getDetails() {
         return details;
     }
 
-    public void setDetails(List<MinderRankingDetail> details) {
+    public void setDetails(Set<MinderRankingDetail> details) {
         this.details = details;
+        details.forEach(detail->{
+            detail.setMinderRanking(this);
+        });
+    }
+    public void addDetail(MinderRankingDetail detail) {
+        this.details.add(detail);
+        detail.setMinderRanking(this);
+    }
+    public void removeDetails(MinderRankingDetail detail) {
+        this.details.remove(detail);
+        detail.setMinderRanking(null);
+    }
+
+    public void replaceDetail(Set<MinderRankingDetail> details) {
+        this.details.clear();
+        this.details.addAll(details);
+        this.details.forEach(detail->{
+            detail.setMinderRanking(this);
+        });
     }
 
     public Hero getHero() {
@@ -102,5 +119,6 @@ public class MinderRanking {
     public void setInvalid(Boolean invalid) {
         this.invalid = invalid;
     }
+
 
 }

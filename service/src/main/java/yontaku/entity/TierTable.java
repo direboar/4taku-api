@@ -1,50 +1,53 @@
 package yontaku.entity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import javax.persistence.Column;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.SqlResultSetMapping;
+
+import org.hibernate.annotations.TypeDef;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-
 @Entity
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-@SqlResultSetMapping(name = "TierTablePagingDtoMapping", classes = {
-        @ConstructorResult(targetClass = yontaku.entity.dto.TierTablePagingDto.class, columns = {
-                @ColumnResult(name = "id", type = Integer.class), 
-                @ColumnResult(name = "name", type = String.class),
-                @ColumnResult(name = "ownerid", type = Integer.class),
-                @ColumnResult(name = "ownerName", type = String.class),
-                @ColumnResult(name = "updatedAt", type = LocalDateTime.class) }) })
 public class TierTable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tiertable_seq")
     @SequenceGenerator(name = "tiertable_seq", sequenceName = "tiertable_seq", allocationSize = 1)
     private Integer id;
-    private String name;
-    // FIXME One-To-Oneで結合する。Mapperに影響が及ぶのでいったんクエリで対応する。
-    private int ownerid;
 
-    @Column(columnDefinition = "jsonb")
-    @Type(type = "jsonb")
-    private List<Tier> tiers = new ArrayList<>();
+    private String name;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ownerid")
+    private Account owner;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch = FetchType.LAZY,mappedBy = "tierTable") 
+    @OrderBy("tableOrder") //配列のソート順　@see http://terasolunaorg.github.io/guideline/public_review/ArchitectureInDetail/DataAccessJpa.html#id84
+    private Set<Tier> tiers = new HashSet<>();
 
     private LocalDateTime updatedAt;
 
     public TierTable() {
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public TierTable(Integer id, String name) {
@@ -52,19 +55,14 @@ public class TierTable {
         this.name = name;
     }
 
-    public TierTable(Integer id, String name, int ownerid, List<Tier> tiers) {
+    public TierTable(Integer id, String name,  Set<Tier> tiers) {
         this.id = id;
         this.name = name;
-        this.ownerid = ownerid;
         this.tiers = tiers;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -75,20 +73,15 @@ public class TierTable {
         this.name = name;
     }
 
-    public int getOwnerid() {
-        return ownerid;
-    }
-
-    public void setOwnerid(int ownerid) {
-        this.ownerid = ownerid;
-    }
-
-    public List<Tier> getTiers() {
+    public Set<Tier> getTiers() {
         return tiers;
     }
 
-    public void setTiers(List<Tier> tiers) {
+    public void setTiers(Set<Tier> tiers) {
         this.tiers = tiers;
+        tiers.forEach(tier->{
+            tier.setTierTable(this);
+        });
     }
 
     public LocalDateTime getUpdatedAt() {
@@ -97,6 +90,32 @@ public class TierTable {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Account getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
+    
+    /** 
+     * Tierに、指定したHeroEvaluationと同一のHeroEvaluationが、登録されているかを返却する。
+     * なお同一性は、HeroEvaluationが保持するHeroで判定する。
+     * @param heroEvaluation
+     * @return boolean
+     */
+    public boolean containsHeroEvaluationByHero(HeroEvaluation heroEvaluation){
+        return this.tiers.stream().map(tier->tier.containsHeroEvaluationByHero(heroEvaluation)).anyMatch(r->r==true);
+    }
+    
+    /** 
+     * Tierに所属するすべてのHeroEvaluationを返却する。
+     * @return Set<HeroEvaluation>
+     */
+    public Set<HeroEvaluation> getAllHeroEvaluation(){
+        return this.tiers.stream().map(tier->tier.getHeroEvaluation()).flatMap(Collection::stream).collect(Collectors.toSet());
     }
 
 }

@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.junit.jupiter.api.Test;
-
 import io.quarkus.test.junit.QuarkusTest;
 import yontaku.entity.Hero;
 
@@ -18,7 +16,7 @@ public class HeroServiceTest {
     @Inject
     private HeroService repository;
 
-    @Test
+    // @Test
     public void test() {
         List<Hero> list = this.repository.getAll();
         assertTrue(list.size() > 0);

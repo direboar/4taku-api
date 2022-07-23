@@ -12,7 +12,7 @@ public class DeckTrackerHeroNameMapping {
     @Id
     private String deckTrackerHeroName;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY) //no cascade.
     @JoinColumn(name = "heroId")
     private Hero hero;
 
@@ -22,12 +22,5 @@ public class DeckTrackerHeroNameMapping {
     public void setDeckTrackerHeroName(String deckTrackerHeroName) {
         this.deckTrackerHeroName = deckTrackerHeroName;
     }
-    // public String getHeroName() {
-    //     return heroName;
-    // }
-    // public void setHeroName(String heroName) {
-    //     this.heroName = heroName;
-    // }
 
 }
-

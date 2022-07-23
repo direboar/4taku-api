@@ -17,7 +17,6 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import io.quarkus.oidc.UserInfo;
 import io.quarkus.security.identity.SecurityIdentity;
 import yontaku.entity.TierTable;
-import yontaku.entity.dto.TierTablePagingDto;
 
 @ApplicationScoped
 public class TierTableService {
@@ -36,15 +35,42 @@ public class TierTableService {
 
     @Transactional
     public int save(TierTable tierTable) {
+        TierTable fromDb = null;
+
+        //DBに登録済みのHeroEvaluationが、更新対象のTier表から削除されている場合は、対象のHeroEvaluationをDBから削除する。
+        //Tier->HeroEvaluationは、orphanRemoval=falseのため削除されないための措置。
+        //なお、orphanRemoval=trueとした場合、HeroEvaluationがリストから削除されたことを持ってDelete文が発行される関係で、親子関係の付け替えが正しく動作しない。
+        //そのため、このような設計としている。
+        //なお、TierTable->TierはorphanRemoval=tureのためそのような処理は不要。
+        if(tierTable.getId() != null){
+            fromDb = this.entityManager.find(TierTable.class, tierTable.getId());
+            fromDb.getAllHeroEvaluation().forEach(he->{
+                if(!tierTable.containsHeroEvaluationByHero(he)){
+                    this.entityManager.remove(he);
+                }                
+            });
+        }
+        
+        //更新対象のTierTableをマージする。（HeroEvaluationはCascadeでマージされる。）
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
         LocalDateTime updatedAt = now.toLocalDateTime();
         tierTable.setUpdatedAt(updatedAt);
-        TierTable updated = this.entityManager.merge(tierTable);
-        return updated.getId();
+        TierTable mergedTierTable = this.entityManager.merge(tierTable);
+
+        return mergedTierTable.getId();
     }
 
     public TierTable get(int id) {
-        return this.entityManager.find(TierTable.class, id);
+        Query query = entityManager.createQuery(
+                "SELECT tt FROM TierTable tt " +
+                        "LEFT OUTER JOIN FETCH tt.tiers as t " +
+                        "LEFT OUTER JOIN FETCH t.heroEvaluations as he " +
+                        "LEFT OUTER JOIN FETCH he.hero as hero " +
+                        "LEFT OUTER JOIN FETCH hero.deckTrackerHeroNameMapping " +
+                        "WHERE tt.id = :id " +
+                        "ORDER BY t.tableOrder");
+        query.setParameter("id", id);
+        return TierTable.class.cast(query.getSingleResult());
     }
 
     @Transactional
@@ -62,49 +88,35 @@ public class TierTableService {
         return entityManager.createQuery(query).getResultList();
     }
 
-    public int getTotalCount(boolean owner,int accountId) {
+    public int getTotalCount(boolean owner, int accountId) {
+        String jpql = "SELECT count(t) FROM TierTable t " +
+                "INNER JOIN t.owner as o ";
 
-        String sql = "SELECT " +
-                " COUNT(*)  " +
-                " FROM TIERTABLE AS A " +
-                "  INNER JOIN ACCOUNT AS B " +
-                "  ON A.OWNERID = B.ID ";
-        if(owner){
-            sql += " AND A.OWNERID = ?1" ;
+        if (owner) {
+            jpql += "WHERE o.id = :accountId ";
         }
-        Query query = entityManager.createNativeQuery(sql);
-        if(owner){
-            query.setParameter(1,accountId);
+        Query query = entityManager.createQuery(jpql);
+        if (owner) {
+            query.setParameter("accountId", accountId);
         }
         int count = ((Number) query.getSingleResult()).intValue();
         return count;
     }
 
-    // public List<TierTable> getAllByPaging(int offset, int limit) {
-    // CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-    // CriteriaQuery<TierTable> query = builder.createQuery(TierTable.class);
-    // Root<TierTable> root = query.from(TierTable.class);
-    // query.multiselect(root.get("id"), root.get("name"));
-    // return
-    // entityManager.createQuery(query).setFirstResult(offset).setMaxResults(limit).getResultList();
-    // }
+    public List<TierTable> getAllByPaging(int offset, int limit, boolean owner, int accountId) {
+        String jpql = "SELECT t FROM TierTable t " +
+                "INNER JOIN FETCH t.owner as o ";
 
-    public List<TierTablePagingDto> getAllByPaging(int offset, int limit, boolean owner,int accountId) {
-        String sql = "SELECT " +
-                " A.ID, A.NAME, A.OWNERID , A.UPDATEDAT , B.NAME AS OWNERNAME " +
-                " FROM TIERTABLE AS A " +
-                "  INNER JOIN ACCOUNT AS B " +
-                "  ON A.OWNERID = B.ID ";
-        if(owner){
-            sql += " AND A.OWNERID = ?1" ;
+        if (owner) {
+            jpql += "WHERE o.id = :accountId ";
         }
-        sql += "  ORDER BY UPDATEDAT DESC" +
-                "  LIMIT " + limit + " " +
-                "  OFFSET " + offset + " ";
-        Query query = this.entityManager.createNativeQuery(sql, "TierTablePagingDtoMapping");
-        if(owner){
-            query.setParameter(1,accountId);
+        jpql += "ORDER BY t.updatedAt DESC";
+        Query query = entityManager.createQuery(jpql);
+        if (owner) {
+            query.setParameter("accountId", accountId);
         }
+        query.setMaxResults(limit);
+        query.setFirstResult(offset);
         return query.getResultList();
     }
 

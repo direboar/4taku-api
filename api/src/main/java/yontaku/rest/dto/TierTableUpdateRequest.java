@@ -24,7 +24,7 @@ public class TierTableUpdateRequest {
         private String id; //uuid 
         private String name;
         private String color;
-        private int order;
+        private int tableOrder;
         private List<Hero> heros = new ArrayList<>();
     }
 
@@ -32,7 +32,9 @@ public class TierTableUpdateRequest {
     @Setter 
     @ToString
     public static class Hero{
-        private int id;
+        private int id;//ヒーローのID
+        private int evaluationId;//ヒーロー評価のID
+        private int evaluationOrder;
         private Ban ban;
         private String memo;
     }

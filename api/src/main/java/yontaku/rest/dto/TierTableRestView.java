@@ -20,11 +20,10 @@ public class TierTableRestView{
     @Setter 
     @ToString
     public static class Tier{
-
         private String id; //uuid 
         private String name;
         private String color;
-        private int order;
+        private int tableOrder;
         private List<Hero> heros = new ArrayList<>();
     }
 
@@ -32,11 +31,13 @@ public class TierTableRestView{
     @Setter 
     @ToString
     public static class Hero{
-        private int id;
-        private int battlenetId;
+        private String deckTrackerHeroName;
+        private int id;//ヒーローのID
+        private int evaluationId;//ヒーロー評価のID
         private String name;
         private String displayName;
         private String imageURL;
+        private int evaluationOrder;
         private Ban ban;
         private String memo;
 
@@ -46,8 +47,8 @@ public class TierTableRestView{
     @Setter 
     @ToString
     public static class Ban{
-        private List<MinionType> exists;
-        private List<MinionType> notExists;
+        private List<MinionType> exists = new ArrayList<>();
+        private List<MinionType> notExists = new ArrayList<>();
 
     }
 

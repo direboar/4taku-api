@@ -24,4 +24,5 @@ public interface MinderRankingMapper {
     MinderRankingView minderRankingToMinderRankingView(MinderRanking minderRanking,Hero hero,DeckTrackerHeroNameMapping deckTrackerHeroNameMapping);
 
     MinderRankingView.MinderRankingDetail minderRankingDetailToMinderRankingDetailView(MinderRankingDetail detail);
+
 }

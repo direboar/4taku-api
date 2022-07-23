@@ -10,7 +10,6 @@ public class Hero {
     @Id
     private int id;
 
-    // private int battlenetId;
     private String name;
     private String displayName;
     private String imageURL;
@@ -18,7 +17,8 @@ public class Hero {
 
     //Eagerでとる場合はJOIN FETCHすること
     //@see https://terasolunaorg.github.io/guideline/public_review/ArchitectureInDetail/DataAccessJpa.html#join-fetch
-    @OneToOne(mappedBy="hero",fetch = FetchType.EAGER)
+    // @OneToOne(mappedBy="hero",fetch = FetchType.EAGER)
+    @OneToOne(mappedBy="hero",fetch = FetchType.LAZY) //no cascade.
     private DeckTrackerHeroNameMapping deckTrackerHeroNameMapping;
 
     public Hero() {

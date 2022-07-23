@@ -5,9 +5,11 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -93,8 +95,8 @@ public class MinderRankingExternalService {
         minderRanking.setCoinCurve1(record.get(3));
         minderRanking.setCoinCurve2(record.get(4));
 
-        List<MinderRankingDetail> details = new ArrayList<>();
-        minderRanking.setDetails(details);
+        Set<MinderRankingDetail> details = new HashSet<>();
+        // minderRanking.setDetails(details);
         Map<String, String> rankingPerMinionType = new HashMap<>();
         metaData.entrySet().forEach(kv -> {
             MinderRankingDetail detail = new MinderRankingDetail();
@@ -102,6 +104,7 @@ public class MinderRankingExternalService {
             detail.setRanking(record.get(kv.getValue()));
             details.add(detail);
         });
+        minderRanking.setDetails(details);
 
         return minderRanking;
     }

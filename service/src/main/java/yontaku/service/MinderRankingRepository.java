@@ -20,20 +20,19 @@ public class MinderRankingRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void save(MinderRanking minderRanking) {
+    public void persist(MinderRanking minderRanking) {
         this.entityManager.persist(minderRanking);
+    }
+
+    @Transactional
+    public void merge(MinderRanking minderRanking) {
+        this.entityManager.merge(minderRanking);
+        this.entityManager.flush();
     }
 
     @Transactional
     public void delete(MinderRanking minderRanking) {
         this.entityManager.remove(minderRanking);
-    }
-
-    @Transactional
-    public void deleteDetails(MinderRanking minderRanking) {
-        minderRanking.getDetails().forEach(detail->{
-            this.entityManager.remove(detail);
-        });
     }
 
     @Transactional

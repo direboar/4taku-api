@@ -1,9 +1,12 @@
 package yontaku.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -16,6 +19,10 @@ public class MinderRankingDetail {
     private String minionType;
 
     private String ranking;
+
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "rankingId")
+    private MinderRanking minderRanking;
 
     public int getId() {
         return id;
@@ -39,6 +46,14 @@ public class MinderRankingDetail {
 
     public void setRanking(String ranking) {
         this.ranking = ranking;
+    }
+
+    public MinderRanking getMinderRanking() {
+        return minderRanking;
+    }
+
+    public void setMinderRanking(MinderRanking minderRanking) {
+        this.minderRanking = minderRanking;
     }
 
 }

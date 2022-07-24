@@ -25,7 +25,8 @@
 		"redhat.vscode-quarkus", //quarkus plugin
 		"ckolkman.vscode-postgres",
 		"GabrielBB.vscode-lombok", //lombok
-		"redhat.vscode-xml"
+		"redhat.vscode-xml",
+		"madhavd1.javadoc-tools"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [

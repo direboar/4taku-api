@@ -5,9 +5,11 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -23,8 +25,9 @@ import org.jboss.logging.Logger;
 import yontaku.entity.MinderRanking;
 import yontaku.entity.MinderRankingDetail;
 
+
 @ApplicationScoped
-public class MinderRankingService {
+public class MinderRankingExternalService {
     private static final Logger LOG = Logger.getLogger(BattlenetService.class);
 
     @Transactional
@@ -87,13 +90,13 @@ public class MinderRankingService {
         // "Akazamzarak","C","4.2","Slow Rafaam Curve","Rafaam
         // Curve","Link","Helpful","Helpful","Irrellevant","Irrellevant","Irrellevant","Helpful","Irrellevant","Irrellevant","Avoid","","","","","","","","","","",""
         MinderRanking minderRanking = new MinderRanking();
-        minderRanking.setHeroName(record.get(0));
+        minderRanking.setMinderRankingHeroName(record.get(0));
         minderRanking.setRanking(record.get(1));
         minderRanking.setCoinCurve1(record.get(3));
         minderRanking.setCoinCurve2(record.get(4));
 
-        List<MinderRankingDetail> details = new ArrayList<>();
-        minderRanking.setDetails(details);
+        Set<MinderRankingDetail> details = new HashSet<>();
+        // minderRanking.setDetails(details);
         Map<String, String> rankingPerMinionType = new HashMap<>();
         metaData.entrySet().forEach(kv -> {
             MinderRankingDetail detail = new MinderRankingDetail();
@@ -101,6 +104,7 @@ public class MinderRankingService {
             detail.setRanking(record.get(kv.getValue()));
             details.add(detail);
         });
+        minderRanking.setDetails(details);
 
         return minderRanking;
     }

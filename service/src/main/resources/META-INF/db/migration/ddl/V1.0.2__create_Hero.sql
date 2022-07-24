@@ -1,6 +1,6 @@
 create table Hero(
     id int primary key,
-    battlenetId int not null,
+    -- battlenetId int not null,
     name varchar(128) not null,
     displayName varchar(128) not null,
     imageURL varchar(128) not null,

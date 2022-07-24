@@ -1,6 +1,6 @@
 package yontaku.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -19,7 +20,7 @@ public class MinderRanking {
     @SequenceGenerator(name = "minder_ranking_seq", sequenceName = "minder_ranking_seq", allocationSize = 1)
     private int id;
 
-    private String heroName;
+    private String minderRankingHeroName;
 
     private String ranking;
 
@@ -27,10 +28,14 @@ public class MinderRanking {
 
     private String coinCurve2;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-    @JoinColumn(name = "rankingId")
-    // @OneToMany(mappedBy = "minderRankingId", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
-    private List<MinderRankingDetail> details;
+    private Boolean invalid;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER,mappedBy = "minderRanking") 
+    private Set<MinderRankingDetail> details ;
+
+    @OneToOne(fetch = FetchType.EAGER) //no cascade.
+    @JoinColumn(name = "heroId")
+    private Hero hero;
 
     public int getId() {
         return id;
@@ -40,12 +45,12 @@ public class MinderRanking {
         this.id = id;
     }
 
-    public String getHeroName() {
-        return heroName;
+    public String getMinderRankingHeroName() {
+        return minderRankingHeroName;
     }
 
-    public void setHeroName(String heroName) {
-        this.heroName = heroName;
+    public void setMinderRankingHeroName(String minderRankingHeroName) {
+        this.minderRankingHeroName = minderRankingHeroName;
     }
 
     public String getRanking() {
@@ -72,12 +77,47 @@ public class MinderRanking {
         this.coinCurve2 = coinCurve2;
     }
 
-    public List<MinderRankingDetail> getDetails() {
+    public Set<MinderRankingDetail> getDetails() {
         return details;
     }
 
-    public void setDetails(List<MinderRankingDetail> details) {
+    public void setDetails(Set<MinderRankingDetail> details) {
         this.details = details;
+        details.forEach(detail->{
+            detail.setMinderRanking(this);
+        });
+    }
+    public void addDetail(MinderRankingDetail detail) {
+        this.details.add(detail);
+        detail.setMinderRanking(this);
+    }
+    public void removeDetails(MinderRankingDetail detail) {
+        this.details.remove(detail);
+        detail.setMinderRanking(null);
+    }
+
+    public void replaceDetail(Set<MinderRankingDetail> details) {
+        this.details.clear();
+        this.details.addAll(details);
+        this.details.forEach(detail->{
+            detail.setMinderRanking(this);
+        });
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public Boolean getInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(Boolean invalid) {
+        this.invalid = invalid;
     }
 
 

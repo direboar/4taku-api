@@ -44,7 +44,7 @@ public class HeroService {
                 removedList.add(removed);
             }
         });
-        removedList.forEach(removed ->{herosFromDB.remove(removed.getBattlenetId());});
+        removedList.forEach(removed ->{herosFromDB.remove(removed.getId());});
 
         //4.Battlenet登録済のデータを更新する。
         herosFromBattlenet.entrySet().forEach(kv->{
@@ -67,7 +67,7 @@ public class HeroService {
     }
 
     private Map<Integer,Hero> toMap(List<Hero> heros){
-        return heros.stream().collect(Collectors.toMap(item->item.getBattlenetId(), item->item));
+        return heros.stream().collect(Collectors.toMap(item->item.getId(), item->item));
     }
 
     //全件検索

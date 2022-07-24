@@ -27,7 +27,6 @@ public class UpdateHeroCommand implements Runnable {
  
        // 1.battlenetからヒーロー情報を取得
        List<Hero> fromBattlenet = this.battlenetService.getHeros();
-       // fromBattlenet.remove(fromBattlenet.get(0));
        // 2.ヒーロー情報を洗い替える
        this.heroService.updateFromBattlenet(fromBattlenet);
  

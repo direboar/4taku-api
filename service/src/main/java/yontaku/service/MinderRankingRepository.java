@@ -5,7 +5,10 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import yontaku.entity.MinderRanking;
@@ -17,8 +20,14 @@ public class MinderRankingRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void save(MinderRanking minderRanking) {
+    public void persist(MinderRanking minderRanking) {
         this.entityManager.persist(minderRanking);
+    }
+
+    @Transactional
+    public void merge(MinderRanking minderRanking) {
+        this.entityManager.merge(minderRanking);
+        this.entityManager.flush();
     }
 
     @Transactional
@@ -28,15 +37,26 @@ public class MinderRankingRepository {
 
     @Transactional
     public void purge(){
-        this.getAll().forEach(minderRanking->{
+        this.getAllValid().forEach(minderRanking->{
             this.delete(minderRanking);
         });
     }
 
-    // 全件検索
+    // hero,deckTrackerHeroNameMappingを全てFetchJoinして返却する。
+    public List<MinderRanking> getAllValid() {
+        Query query = entityManager.createQuery(
+            "SELECT m FROM MinderRanking m "+ 
+            "INNER JOIN FETCH m.hero as h " + 
+            "INNER JOIN FETCH h.deckTrackerHeroNameMapping " + 
+            "WHERE m.invalid = false");
+        return query.getResultList();
+    }
+
     public List<MinderRanking> getAll() {
-        CriteriaQuery<MinderRanking> query = this.entityManager.getCriteriaBuilder().createQuery(MinderRanking.class);
-        query.select(query.from(MinderRanking.class));
+        CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+        CriteriaQuery<MinderRanking> query = builder.createQuery(MinderRanking.class);
+        Root<MinderRanking> root = query.from(MinderRanking.class);
+        query.select(root);
         return entityManager.createQuery(query).getResultList();
     }
 

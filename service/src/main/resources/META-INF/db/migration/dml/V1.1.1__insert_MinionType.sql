@@ -6,4 +6,4 @@ insert into MinionType VALUES (5,'Mechs','./minionTypes/Mech.png');
 insert into MinionType VALUES (6,'Murlocs','./minionTypes/Murloc.png');
 insert into MinionType VALUES (7,'Pirates','./minionTypes/Pirate.png');
 insert into MinionType VALUES (8,'Quillboar','./minionTypes/Quilboar.png');
-insert into MinionType VALUES (9,'Naga','./minionTypes/Naga.png');
+insert into MinionType VALUES (9,'Nagas','./minionTypes/Nagas.png');

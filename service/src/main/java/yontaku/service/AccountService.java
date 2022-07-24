@@ -52,6 +52,10 @@ public class AccountService {
         }
     }
 
+    public Account getAccountById(int accountId){
+        return this.entityManager.find(Account.class,accountId);
+    }
+
     private Account createDefaultAccount(){
         String oicdUserName = this.securityIdentity.getPrincipal().getName();
         Account account = new Account();

@@ -1,29 +1,31 @@
 package yontaku.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Hero {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "heroid_seq")
-    @SequenceGenerator(name = "heroid_seq", sequenceName = "heroid_seq", allocationSize = 1)
     private int id;
 
-    private int battlenetId;
     private String name;
     private String displayName;
     private String imageURL;
     private Boolean invalid;
 
+    //Eagerでとる場合はJOIN FETCHすること
+    //@see https://terasolunaorg.github.io/guideline/public_review/ArchitectureInDetail/DataAccessJpa.html#join-fetch
+    // @OneToOne(mappedBy="hero",fetch = FetchType.EAGER)
+    @OneToOne(mappedBy="hero",fetch = FetchType.LAZY) //no cascade.
+    private DeckTrackerHeroNameMapping deckTrackerHeroNameMapping;
+
     public Hero() {
     }
 
-    public Hero(int battlenetId, String name, String displayName, String imageURL,Boolean invalid) {
-        this.battlenetId = battlenetId;
+    public Hero(int id, String name, String displayName, String imageURL,Boolean invalid) {
+        this.id = id;
         this.name = name;
         this.displayName = displayName;
         this.imageURL = imageURL;
@@ -40,14 +42,6 @@ public class Hero {
 
     public int getId() {
         return id;
-    }
-
-    public int getBattlenetId() {
-        return battlenetId;
-    }
-
-    public void setBattlenetId(int battlenetId) {
-        this.battlenetId = battlenetId;
     }
 
     public void setId(int id) {
@@ -76,6 +70,14 @@ public class Hero {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public DeckTrackerHeroNameMapping getDeckTrackerHeroNameMapping() {
+        return deckTrackerHeroNameMapping;
+    }
+
+    public void setDeckTrackerHeroNameMapping(DeckTrackerHeroNameMapping deckTrackerHeroNameMapping) {
+        this.deckTrackerHeroNameMapping = deckTrackerHeroNameMapping;
     }
 
 }

@@ -16,8 +16,6 @@ public class MigrateFlywayCommand implements Runnable {
 
     @Inject
     private FlywayService flywayService;
-    // @Inject
-    // private Flyway flyway;
  
     @Override
     public void run() {

@@ -76,7 +76,9 @@ insert into MinderRanking values(75,'Aggro Yogg Curve','Basic Yogg Curve','Yogg'
 insert into MinderRanking values(76,'Jeef Curve','None','Ysera','60370','D');
 insert into MinderRanking values(77,'Fast Basic Curve','Basic Yogg Curve','Yshaarj','66196','B');
 insert into MinderRanking values(78,'Fast Basic Curve','Slow Jeef Curve','Zephrys','64485','B');
-insert into MinderRanking values(79,'Fast Basic Curve','None','Ambassador Faelin',null,' A+');
-insert into MinderRanking values(80,'Warrior Curve','None','Ini Stormcoil',null,'F');
-SELECT SETVAL ('minder_ranking_seq', '80');
+insert into MinderRanking values(79,'Fast Basic Curve','None','Ambassador Faelin',81569,' A+');
+insert into MinderRanking values(80,'Warrior Curve','Fast Jeef Curve','Ini Stormcoil',80832,'F');
+insert into MinderRanking values(81,'Warrior Curve','None','Queen Azshara',79618,'A-');
+insert into MinderRanking values(82,'3 on 3','Warrior Curve','Ozumat',86013,'C');
+SELECT SETVAL ('minder_ranking_seq', '82');
 

@@ -52,14 +52,14 @@ insert into HeroEvaluation values(135,39,59814,'{"desierd":[],"needless":[6,4,3]
 insert into HeroEvaluation values(139,39,60370,'{"desierd":[9,4],"needless":[1,8,5,6],"required":[3]}','','https://studybg.com/wp-content/uploads/2022/07/34d0d1e8e1e6b308905d0d1811f37d14-1024x576.png',3);
 insert into HeroEvaluation values(155,39,67553,'{"desierd":[1,4],"needless":[3,6,8],"required":[5,2]}','','https://studybg.com/wp-content/uploads/2022/07/88a97de7fb2b6f69e6685071b79bac4a-1024x576.png',23);
 insert into HeroEvaluation values(154,39,71458,'{"desierd":[1,7,9],"needless":[4],"required":[5,8]}','','https://studybg.com/wp-content/uploads/2022/07/f7f0708c67ab119edd9cf074e8c2a3f3-1-1024x576.png',22);
-insert into HeroEvaluation values(153,39,66483,'{"desierd":[],"needless":[],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/d6f9b9cdbecc71df2fb5e06aaccf5d8a-1024x576.png',18);
+insert into HeroEvaluation values(153,39,66483,'{"desierd":[],"needless":[3,6,8,4,9],"required":[1,2,5]}','','https://studybg.com/wp-content/uploads/2022/07/d6f9b9cdbecc71df2fb5e06aaccf5d8a-1024x576.png',18);
 insert into HeroEvaluation values(138,39,60369,'{"desierd":[1],"needless":[6,9],"required":[5,2]}','','https://studybg.com/wp-content/uploads/2022/07/71838f1a1bc11e0a5051e0ca72626e50-1024x576.png',14);
 insert into HeroEvaluation values(137,39,61489,'{"desierd":[9,7],"needless":[1,6,4],"required":[5,8]}','','https://studybg.com/wp-content/uploads/2022/07/nozudorumu3-1024x576.png',2);
-insert into HeroEvaluation values(160,39,71916,'{"desierd":[],"needless":[],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/d17a0504378094ad6b2d2f2927cbdcc6-1024x576.png',25);
+insert into HeroEvaluation values(160,39,71916,'{"desierd":[6,4],"needless":[3],"required":[5,8,9]}','','https://studybg.com/wp-content/uploads/2022/07/d17a0504378094ad6b2d2f2927cbdcc6-1024x576.png',25);
 insert into HeroEvaluation values(159,39,57947,'{"desierd":[3,8,4],"needless":[6,5,9],"required":[2,7]}','','https://studybg.com/wp-content/uploads/2022/07/5df1d245c3410d3f818f06f1187a2f49-1024x576.png',24);
 insert into HeroEvaluation values(158,39,81569,'{"desierd":[8,7],"needless":[1,6,3,4],"required":[5,2]}','','https://studybg.com/wp-content/uploads/2022/07/b46567800541d5c8ca372e0c610a2065-1024x576.png',17);
 insert into HeroEvaluation values(157,39,57924,'{"desierd":[1],"needless":[6,3,4],"required":[5,2]}','','https://studybg.com/wp-content/uploads/2022/07/wagtoguru4-1024x576.png',21);
-insert into HeroEvaluation values(156,39,79719,'{"desierd":[],"needless":[],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/2983c4b4b0414c75292156aa326514a4-1024x576.png',19);
+insert into HeroEvaluation values(156,39,79719,'{"desierd":[9],"needless":[1,3],"required":[5,2,4]}','','https://studybg.com/wp-content/uploads/2022/07/2983c4b4b0414c75292156aa326514a4-1024x576.png',19);
 insert into HeroEvaluation values(152,39,58534,'{"desierd":[2],"needless":[3,6,4],"required":[1,5,7]}','','https://studybg.com/wp-content/uploads/2022/07/eec0f3737eafd6b4298f74781fc4af24-1024x576.png',26);
 insert into HeroEvaluation values(151,39,61488,'{"desierd":[9],"needless":[5,8,4],"required":[1,3,7]}','','https://studybg.com/wp-content/uploads/2022/07/0d228a7bbd4fd5d84b1471c0fa24c99c-1-1024x576.png',27);
 insert into HeroEvaluation values(150,39,64485,'{"desierd":[5,2],"needless":[3],"required":[1,7,4,9]}','','https://studybg.com/wp-content/uploads/2022/07/d75a1a5470f172796bca24a1434c2178-1024x576.png',20);
@@ -71,19 +71,19 @@ insert into HeroEvaluation values(99,40,57929,'{"desierd":[5,9,3],"needless":[1,
 insert into HeroEvaluation values(94,40,64480,'{"desierd":[1,7],"needless":[3],"required":[5,9]}','','https://studybg.com/wp-content/uploads/2022/07/sairasu24-1024x576.png',3);
 insert into HeroEvaluation values(101,40,79615,'{"desierd":[1,6,8,5,2],"needless":[3],"required":[7,4,9]}','','https://studybg.com/wp-content/uploads/2022/07/e6f3b59e2dd802be8f1b884aeeda9115-1024x576.png',6);
 insert into HeroEvaluation values(102,40,70956,'{"desierd":[5,7],"needless":[6,3],"required":[1,4,9]}','','https://studybg.com/wp-content/uploads/2022/07/72a972fafee8a9e4c6b0ad1eb6a65ec9-1024x576.png',7);
-insert into HeroEvaluation values(103,40,76562,'{"desierd":[],"needless":[],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/d9b92fad85b8fc8521ad7676f0a9dc62-1024x576.png',13);
+insert into HeroEvaluation values(103,40,76562,'{"desierd":[5,1,7],"needless":[6,3],"required":[4,9]}','','https://studybg.com/wp-content/uploads/2022/07/d9b92fad85b8fc8521ad7676f0a9dc62-1024x576.png',13);
 insert into HeroEvaluation values(104,40,73940,'{"desierd":[9,2],"needless":[3,4],"required":[5]}','','https://studybg.com/wp-content/uploads/2022/07/a0c8340d2a3e52957062d4ba2a02f2e4-1024x576.png',9);
 insert into HeroEvaluation values(105,40,63601,'{"desierd":[6,9,7],"needless":[3],"required":[1,4]}','','https://studybg.com/wp-content/uploads/2022/07/3a16a3f0f0ef651e4d081697e22bc67a-1024x576.png',8);
 insert into HeroEvaluation values(106,40,75702,'{"desierd":[9,1],"needless":[4,6],"required":[5,8,7]}','','https://studybg.com/wp-content/uploads/2022/07/geiruwing34-1024x576.png',10);
 insert into HeroEvaluation values(107,40,62266,'{"desierd":[7,8],"needless":[3],"required":[1,9]}','','https://studybg.com/wp-content/uploads/2022/07/bb44d118b5ae24f59ec5a761e5cc48ff-1024x576.png',11);
-insert into HeroEvaluation values(108,40,63602,'{"desierd":[],"needless":[],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/26582589d181cc93e8ec4e4bd6998871-1024x576.png',12);
+insert into HeroEvaluation values(108,40,63602,'{"desierd":[1,9],"needless":[6,3],"required":[5,7]}','','https://studybg.com/wp-content/uploads/2022/07/26582589d181cc93e8ec4e4bd6998871-1024x576.png',12);
 insert into HeroEvaluation values(100,41,68129,'{"desierd":[8],"needless":[3],"required":[5]}','','https://studybg.com/wp-content/uploads/2022/07/gafu24-1024x576.png',0);
 insert into HeroEvaluation values(114,42,59805,'{"desierd":[1,7,9,4],"needless":[3],"required":[5]}','','https://studybg.com/wp-content/uploads/2022/07/yogusaron24-1024x576.png',8);
 insert into HeroEvaluation values(113,42,60211,'{"desierd":[],"needless":[],"required":[1]}','','https://studybg.com/wp-content/uploads/2022/07/4e966c574e638358851dced4e6cf55b1-1024x576.png',18);
 insert into HeroEvaluation values(112,42,60214,'{"desierd":[6,8,4],"needless":[5,3,2],"required":[1,9,7]}','','https://studybg.com/wp-content/uploads/2022/07/0a09cea2e95954f432bcb8b242b0a5f3-1024x576.png',12);
 insert into HeroEvaluation values(111,42,58021,'{"desierd":[1,6],"needless":[3],"required":[5,8]}','','https://studybg.com/wp-content/uploads/2022/07/akazamuzaraku34-1024x576.png',11);
 insert into HeroEvaluation values(110,42,60366,'{"desierd":[8],"needless":[1,6,5,3],"required":[4,7]}','','https://studybg.com/wp-content/uploads/2022/07/c7377ba379224c6744525ad5b9013530-1024x576.png',7);
-insert into HeroEvaluation values(123,42,67356,'{"desierd":[],"needless":[],"required":[]}','',null,19);
+insert into HeroEvaluation values(123,42,67356,'{"desierd":[8,7],"needless":[1,6,4,3],"required":[2,5]}','','https://studybg.com/wp-content/uploads/2022/07/f326cd947f14e5bc04e856d95124a7de-1024x576.png',19);
 insert into HeroEvaluation values(122,42,62268,'{"desierd":[5,9,2,7],"needless":[6,3],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/c479894e52b893ee032e04e0e576b104-1024x576.png',13);
 insert into HeroEvaluation values(121,42,62242,'{"desierd":[],"needless":[6,1,3],"required":[5,2]}','','https://studybg.com/wp-content/uploads/2022/07/6e7a6a252a121bf5bb545178d52fbd4f-1024x576.png',21);
 insert into HeroEvaluation values(120,42,70838,'{"desierd":[4,9],"needless":[1,3],"required":[5,8]}','','https://studybg.com/wp-content/uploads/2022/07/rokara-tochuu24-1024x576.png',1);
@@ -106,7 +106,7 @@ insert into HeroEvaluation values(172,43,63319,'{"desierd":[6,5,8],"needless":[3
 insert into HeroEvaluation values(162,43,59807,'{"desierd":[1,9],"needless":[6,5,8,7],"required":[2]}','','https://studybg.com/wp-content/uploads/2022/07/2afede459675715692aa022e4cc93aea-1024x576.png',13);
 insert into HeroEvaluation values(163,43,60372,'{"desierd":[2,7],"needless":[1,5],"required":[6]}','','https://studybg.com/wp-content/uploads/2022/07/99270843ba22d0a1c9274eae4f4e6520-1024x576.png',4);
 insert into HeroEvaluation values(164,43,58535,'{"desierd":[9,1,4],"needless":[7,6,3],"required":[2,5]}','','https://studybg.com/wp-content/uploads/2022/07/e6ddef3edbed9f571d8c66bfa7293527-1024x576.png',5);
-insert into HeroEvaluation values(165,43,57946,'{"desierd":[],"needless":[],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/7d511dd04df067f4af703fa5c6d9fa78-1024x576.png',12);
+insert into HeroEvaluation values(165,43,57946,'{"desierd":[8],"needless":[1,6,3],"required":[5,9]}','','https://studybg.com/wp-content/uploads/2022/07/7d511dd04df067f4af703fa5c6d9fa78-1024x576.png',12);
 insert into HeroEvaluation values(166,43,59203,'{"desierd":[7],"needless":[1,6],"required":[5,8]}','','https://studybg.com/wp-content/uploads/2022/07/1572eee4f9061f1111865a65a72845fe-1024x576.png',3);
 insert into HeroEvaluation values(167,43,64475,'{"desierd":[],"needless":[1,6,5],"required":[4]}','','https://studybg.com/wp-content/uploads/2022/07/e00b200b0c9cff742acc7444943e3fa8-1024x576.png',7);
 insert into HeroEvaluation values(168,43,57634,'{"desierd":[5],"needless":[6,8,2,9],"required":[1]}','','https://studybg.com/wp-content/uploads/2022/07/51463b064258f0281abc41a930416161-1024x576.png',1);
@@ -116,6 +116,8 @@ insert into HeroEvaluation values(169,43,57892,'{"desierd":[1,7,5],"needless":[4
 insert into HeroEvaluation values(170,43,61912,'{"desierd":[3,5,2,8,7],"needless":[6],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/dd9e8dc351ba2e49c123c73884548a70-1024x576.png',6);
 insert into HeroEvaluation values(171,43,57893,'{"desierd":[5,9,7,4],"needless":[3],"required":[1]}','','https://studybg.com/wp-content/uploads/2022/07/df886a0695ba3b0b28ff5e6227e663d9-1024x576.png',9);
 insert into HeroEvaluation values(132,43,61910,'{"desierd":[1,2,6],"needless":[4,8,3,9],"required":[]}','','https://studybg.com/wp-content/uploads/2022/07/4a13cf1f870e55ff60d39dd449b4b74b-1024x576.png',0);
+insert into HeroEvaluation values(175,42,85125,'{"desierd":[6,7],"needless":[1,3,4],"required":[8,9]}','','https://studybg.com/wp-content/uploads/2022/07/ff62bd9fc31d9e271d9d4703cb06ed38-1024x576.png',24);
+insert into HeroEvaluation values(176,39,86013,'{"desierd":[2,4],"needless":[6,3,9],"required":[1,7]}','','https://studybg.com/wp-content/uploads/2022/07/761034d74481c085341014fa7b80db8b-1024x576.png',28);
 
-SELECT SETVAL ('hero_evaluation_seq', '172');
+SELECT SETVAL ('hero_evaluation_seq', '176');
 

@@ -6,11 +6,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.quarkus.test.junit.QuarkusTest;
 import yontaku.entity.Hero;
 
 //serviceプロジェクトに配置するとQuarkusTestが動作しない…。
-@QuarkusTest
+// @QuarkusTest
 public class HeroServiceTest {
 
     @Inject

@@ -6,10 +6,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.quarkus.test.junit.QuarkusTest;
 import yontaku.entity.DeckTrackerHeroNameMapping;
 
-@QuarkusTest
+// @QuarkusTest
 public class DeckTrackerHeroNameMappingServiceTest {
     @Inject
     private DeckTrackerHeroNameMappingService repository;

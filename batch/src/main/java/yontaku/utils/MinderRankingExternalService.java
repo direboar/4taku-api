@@ -76,7 +76,7 @@ public class MinderRankingExternalService {
         Map<String, Integer> map = new HashMap<>();
         int col = 6;
         while (true) {
-            String val = record.get(col);
+            String val = record.get(col).trim();
             if (val.isBlank()) {
                 break;
             }
@@ -90,18 +90,18 @@ public class MinderRankingExternalService {
         // "Akazamzarak","C","4.2","Slow Rafaam Curve","Rafaam
         // Curve","Link","Helpful","Helpful","Irrellevant","Irrellevant","Irrellevant","Helpful","Irrellevant","Irrellevant","Avoid","","","","","","","","","","",""
         MinderRanking minderRanking = new MinderRanking();
-        minderRanking.setMinderRankingHeroName(record.get(0));
-        minderRanking.setRanking(record.get(1));
-        minderRanking.setCoinCurve1(record.get(3));
-        minderRanking.setCoinCurve2(record.get(4));
+        minderRanking.setMinderRankingHeroName(record.get(0).trim());
+        minderRanking.setRanking(record.get(1).trim());
+        minderRanking.setCoinCurve1(record.get(3).trim());
+        minderRanking.setCoinCurve2(record.get(4).trim());
 
         Set<MinderRankingDetail> details = new HashSet<>();
         // minderRanking.setDetails(details);
         Map<String, String> rankingPerMinionType = new HashMap<>();
         metaData.entrySet().forEach(kv -> {
             MinderRankingDetail detail = new MinderRankingDetail();
-            detail.setMinionType(kv.getKey());
-            detail.setRanking(record.get(kv.getValue()));
+            detail.setMinionType(kv.getKey().trim());
+            detail.setRanking(record.get(kv.getValue()).trim());
             details.add(detail);
         });
         minderRanking.setDetails(details);

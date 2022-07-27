@@ -7,3 +7,8 @@ create table Tier(
     tableOrder int not null
 );
 CREATE SEQUENCE tier_seq START 1;
+
+alter table if exists Tier 
+   add constraint TierFK 
+   foreign key (tiertableid) 
+   references TierTable;

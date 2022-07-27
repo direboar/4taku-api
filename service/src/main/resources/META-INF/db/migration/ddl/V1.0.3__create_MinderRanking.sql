@@ -10,3 +10,8 @@ create table MinderRanking (
 );
 CREATE INDEX minder_ranking_minderRankingHeroName_index ON MinderRanking (minderRankingHeroName);
 CREATE SEQUENCE minder_ranking_seq START 1;
+
+alter table if exists MinderRanking 
+   add constraint MinderRankingFK 
+   foreign key (heroId) 
+   references Hero;

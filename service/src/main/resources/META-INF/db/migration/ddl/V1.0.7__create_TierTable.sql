@@ -5,3 +5,8 @@ create table TierTable(
     updatedAt timestamp
 );
 CREATE SEQUENCE tiertable_seq START 1;
+
+alter table if exists TierTable 
+   add constraint TierTableFK 
+   foreign key (ownerid) 
+   references Account;

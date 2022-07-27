@@ -10,3 +10,6 @@ alter table if exists TierTable
    add constraint TierTableFK 
    foreign key (ownerid) 
    references Account;
+
+ CREATE INDEX TierTablr_index_1 ON TierTable (name);
+  

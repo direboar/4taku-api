@@ -88,36 +88,56 @@ public class TierTableService {
         return entityManager.createQuery(query).getResultList();
     }
 
-    public int getTotalCount(boolean owner, int accountId) {
+    public int getTotalCount(boolean owner, int accountId,String name) {
         String jpql = "SELECT count(t) FROM TierTable t " +
                 "INNER JOIN t.owner as o ";
 
-        if (owner) {
-            jpql += "WHERE o.id = :accountId ";
-        }
+        jpql = addWhere(owner, name, jpql);
         Query query = entityManager.createQuery(jpql);
-        if (owner) {
-            query.setParameter("accountId", accountId);
-        }
+        addParameter(owner, accountId, name, query);
         int count = ((Number) query.getSingleResult()).intValue();
         return count;
     }
 
-    public List<TierTable> getAllByPaging(int offset, int limit, boolean owner, int accountId) {
+    public List<TierTable> getAllByPaging(int offset, int limit, boolean owner, int accountId,String name) {
         String jpql = "SELECT t FROM TierTable t " +
                 "INNER JOIN FETCH t.owner as o ";
 
-        if (owner) {
-            jpql += "WHERE o.id = :accountId ";
-        }
-        jpql += "ORDER BY t.updatedAt DESC";
+        jpql = addWhere(owner, name, jpql);
         Query query = entityManager.createQuery(jpql);
-        if (owner) {
-            query.setParameter("accountId", accountId);
-        }
+        addParameter(owner, accountId, name, query);
         query.setMaxResults(limit);
         query.setFirstResult(offset);
         return query.getResultList();
     }
+
+    private void addParameter(boolean owner, int accountId, String name, Query query) {
+        if (owner) {
+            query.setParameter("accountId", accountId);
+        }
+        if (!name.isBlank()) {
+            query.setParameter("name", "%" + name + "%");
+        }
+    }
+
+    private String addWhere(boolean owner, String name, String jpql) {
+        String where = "";
+        if (owner) {
+            where += "o.id = :accountId ";
+        }
+        if (!name.isBlank()) {
+            if(!where.isBlank()){
+                where += " AND ";
+            }
+            //jpqlでlike https://qiita.com/pppurple/items/2eb7e29cd0afa363647d
+            where += "UPPER(t.name) like UPPER(:name) ";
+        }
+        if(!where.isBlank()){
+            jpql += " WHERE " + where;
+        }
+        return jpql;
+    }
+
+    
 
 }

@@ -95,12 +95,12 @@ public class TierTableResource {
     }
 
     @GET
-    public Response getPage(@RestQuery int offset, @RestQuery int limit,@RestQuery boolean owner,@RestQuery int accountId) {
-        List<TierTableListView> tierTables = this.tierTableService.getAllByPaging(offset, limit,owner,accountId)
+    public Response getPage(@RestQuery int offset, @RestQuery int limit,@RestQuery boolean owner,@RestQuery int accountId,@RestQuery String name) {
+        List<TierTableListView> tierTables = this.tierTableService.getAllByPaging(offset, limit,owner,accountId,name)
             .stream()
             .map(t->tierTableMapper.tierTableAndAccountToTierTableListView(t, t.getOwner()))
             .collect(Collectors.toList());
-        int totalCount = this.tierTableService.getTotalCount(owner,accountId);
+        int totalCount = this.tierTableService.getTotalCount(owner,accountId,name);
         return Response.ok(new PagingResponse<>(tierTables, totalCount)).build();
     }
 

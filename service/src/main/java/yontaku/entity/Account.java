@@ -14,6 +14,7 @@ public class Account {
     private int id;
     private String oicdUserName;
     private String name;
+    private boolean evaluateByMinderRanking;
     public int getId() {
         return id;
     }
@@ -39,6 +40,12 @@ public class Account {
     }
     public void setTierTableId(Integer tierTableId) {
         this.tierTableId = tierTableId;
+    }
+    public boolean isEvaluateByMinderRanking() {
+        return evaluateByMinderRanking;
+    }
+    public void setEvaluateByMinderRanking(boolean evaluateByMinderRanking) {
+        this.evaluateByMinderRanking = evaluateByMinderRanking;
     }
 
 }

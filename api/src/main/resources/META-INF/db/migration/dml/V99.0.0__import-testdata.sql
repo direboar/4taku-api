@@ -1,4 +1,4 @@
-insert into Account values(0,'xxx','test',null);
+insert into Account values(0,'xxx','test',null,false);
 
 insert into TierTable VALUES(1,'aaa',0,current_timestamp);
 insert into TierTable VALUES(2,'bbb',0,current_timestamp);

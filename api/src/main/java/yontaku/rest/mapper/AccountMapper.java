@@ -16,6 +16,7 @@ public interface AccountMapper {
     @Mapping(target = "id", source = "account.id")
     @Mapping(target = "name", source = "account.name")
     @Mapping(target = "tierTableId", source = "account.tierTableId")
+    @Mapping(target = "evaluateByMinderRanking", source = "account.evaluateByMinderRanking")
     public AccountRestView accountAndTierTableToAccountRestView(Account account, TierTable tiertable);
 
     public AccountRestView accountToAccountRestView(Account account);

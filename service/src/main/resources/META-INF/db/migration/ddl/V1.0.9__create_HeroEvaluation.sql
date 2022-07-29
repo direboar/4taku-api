@@ -9,3 +9,13 @@ create table HeroEvaluation(
     evaluationOrder int not null
 );
 CREATE SEQUENCE hero_evaluation_seq START 1;
+
+alter table if exists HeroEvaluation 
+   add constraint HeroEvaluationFK 
+   foreign key (tierId) 
+   references Tier;
+
+alter table if exists HeroEvaluation 
+   add constraint HeroEvaluationFK2 
+   foreign key (heroId) 
+   references Hero;

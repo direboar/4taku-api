@@ -62,6 +62,7 @@ public class AccountService {
         account.setOicdUserName(oicdUserName);
         // account.setName(this.userInfo.getString("name")); //fixme
         account.setTierTableId(null);
+        account.setEvaluateByMinderRanking(false);
         this.entityManager.persist(account);
         return account;
     }

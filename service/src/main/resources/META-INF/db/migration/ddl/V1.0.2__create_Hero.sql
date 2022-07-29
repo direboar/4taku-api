@@ -7,3 +7,8 @@ create table Hero(
     invalid boolean default false
 );
 CREATE SEQUENCE heroid_seq START 1;
+
+alter table if exists DeckTrackerHeroNameMapping 
+ add constraint DeckTrackerHeroNameMappingFK
+ foreign key (heroId) 
+ references Hero;

@@ -42,7 +42,8 @@ public abstract class TierTableMapper {
         heroEvaluation.setId(hero.getEvaluationId());
         heroEvaluation.setBan(banToBanEntity(hero.getBan()));
         heroEvaluation.setEvaluationOrder(hero.getEvaluationOrder());
-        heroEvaluation.setHeroMemoURL(hero.getHeroMemoURL());
+        heroEvaluation.setLinkName(hero.getLinkName());
+        heroEvaluation.setLinkUrl(hero.getLinkUrl());
         Hero heroEntity = this.heroToHeroEntity(hero);
         heroEvaluation.setHero(heroEntity);
         return heroEvaluation;
@@ -76,7 +77,7 @@ public abstract class TierTableMapper {
     @Mapping(target = "evaluationOrder", source = "heroEvaluation.evaluationOrder")
     @Mapping(target = "ban", source = "heroEvaluation.ban")
     @Mapping(target = "memo", source = "heroEvaluation.memo")
-    @Mapping(target = "heroMemoURL", source = "heroEvaluation.heroMemoURL")
+    @Mapping(target = "linkUrl", source = "heroEvaluation.linkUrl")
     public abstract TierTableRestView.Hero entityTierToTierRestView(HeroEvaluation heroEvaluation, Hero hero,
             DeckTrackerHeroNameMapping deckTrackerHeroNameMapping);
 

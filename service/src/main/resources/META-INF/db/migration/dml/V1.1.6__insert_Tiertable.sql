@@ -1,4 +1,4 @@
-insert into TierTable VALUES(5,'シェイミさんTier表',1,current_timestamp);
+insert into TierTable VALUES(5,'バトグラ徹底攻略 Tier表(2022/7/30時点)',1,current_timestamp);
 SELECT SETVAL ('tiertable_seq', '5');
 
 insert into Tier values(39,5,'C','#FFFF8D',3);

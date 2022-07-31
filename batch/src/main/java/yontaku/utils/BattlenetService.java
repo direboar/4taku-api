@@ -70,6 +70,7 @@ public class BattlenetService {
             Integer id = (Integer) map.get("id");
             Map<String, String> name = (Map) map.get("name");
             Map<String, String> image = (Map) map.get("image");
+            LOG.info("hero : " + name.get("ja_JP"));
             return new Hero(id, name.get("en_US"), name.get("ja_JP"), image.get("ja_JP"), false);
         } else {
             return null;

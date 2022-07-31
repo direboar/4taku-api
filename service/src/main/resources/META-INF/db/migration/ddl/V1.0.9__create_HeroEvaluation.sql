@@ -5,7 +5,7 @@ create table HeroEvaluation(
     heroId int ,
     ban jsonb not null,
     memo varchar(9046) not null,
-    linkName varchar(1024),
+    linkName varchar(128),
     linkUrl varchar(2048),
     evaluationOrder int not null
 );

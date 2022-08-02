@@ -6,6 +6,7 @@ create table MinderRanking (
   heroId int4,
   ranking varchar(64),
   invalid boolean default false,
+  updatedAt timestamp,
   primary key (id)
 );
 CREATE INDEX minder_ranking_minderRankingHeroName_index ON MinderRanking (minderRankingHeroName);

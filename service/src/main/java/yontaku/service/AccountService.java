@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import io.quarkus.oidc.UserInfo;
 import io.quarkus.security.identity.SecurityIdentity;
 import yontaku.entity.Account;
+import yontaku.utils.AuditableUtls;
 
 @ApplicationScoped
 public class AccountService {
@@ -63,7 +64,9 @@ public class AccountService {
         // account.setName(this.userInfo.getString("name")); //fixme
         account.setTierTableId(null);
         account.setEvaluateByMinderRanking(false);
+        AuditableUtls.updateTimestamp(account);
         this.entityManager.persist(account);
         return account;
     }
+
 }

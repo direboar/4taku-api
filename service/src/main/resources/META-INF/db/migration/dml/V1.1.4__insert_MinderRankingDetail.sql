@@ -781,3 +781,4 @@ insert into MinderRankingDetail values(1473,'Quillboar','Helpful',11);
 insert into MinderRankingDetail values(1474,'Beast','Irrellevant',11);
 insert into MinderRankingDetail values(1475,'Mechs','Helpful',11);
 insert into MinderRankingDetail values(1476,'Elementals','Irrellevant',11);
+SELECT SETVAL ('minder_ranking_detail_sec', '1476');

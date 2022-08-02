@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import yontaku.entity.MinderRanking;
+import yontaku.utils.AuditableUtls;
 
 @ApplicationScoped
 public class MinderRankingRepository {
@@ -21,11 +22,13 @@ public class MinderRankingRepository {
 
     @Transactional
     public void persist(MinderRanking minderRanking) {
+        AuditableUtls.updateTimestamp(minderRanking);
         this.entityManager.persist(minderRanking);
     }
 
     @Transactional
     public void merge(MinderRanking minderRanking) {
+        AuditableUtls.updateTimestamp(minderRanking);
         this.entityManager.merge(minderRanking);
         this.entityManager.flush();
     }

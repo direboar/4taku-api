@@ -53,7 +53,9 @@ public class HeroEvaluation {
 
     private String memo;
 
-    private String heroMemoURL;
+    private String linkName;
+
+    private String linkUrl;
 
     private int evaluationOrder;
 
@@ -97,16 +99,24 @@ public class HeroEvaluation {
         this.memo = memo;
     }
 
-    public String getHeroMemoURL() {
-        return heroMemoURL;
-    }
-
-    public void setHeroMemoURL(String heroMemoURL) {
-        this.heroMemoURL = heroMemoURL;
-    }
-
     public boolean isNew(){
         return this.id == 0;
+    }
+
+    public String getLinkUrl() {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
+    }
+
+    public String getLinkName() {
+        return linkName;
+    }
+
+    public void setLinkName(String linkName) {
+        this.linkName = linkName;
     }
 
     @Getter 

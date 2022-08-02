@@ -37,7 +37,8 @@ public class TierTableUpdateRequest {
         private int evaluationOrder;
         private Ban ban;
         private String memo;
-        private String heroMemoURL;
+        private String linkName;
+        private String linkUrl;
     }
 
     @Getter 

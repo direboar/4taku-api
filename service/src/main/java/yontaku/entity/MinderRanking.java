@@ -1,5 +1,6 @@
 package yontaku.entity;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class MinderRanking {
+public class MinderRanking implements Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "minder_ranking_seq")
     @SequenceGenerator(name = "minder_ranking_seq", sequenceName = "minder_ranking_seq", allocationSize = 1)
@@ -29,6 +30,8 @@ public class MinderRanking {
     private String coinCurve2;
 
     private Boolean invalid;
+
+    private LocalDateTime updatedAt;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER,mappedBy = "minderRanking") 
     private Set<MinderRankingDetail> details ;
@@ -118,6 +121,14 @@ public class MinderRanking {
 
     public void setInvalid(Boolean invalid) {
         this.invalid = invalid;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 

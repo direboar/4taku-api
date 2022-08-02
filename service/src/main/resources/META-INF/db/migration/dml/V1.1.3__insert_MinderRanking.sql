@@ -86,3 +86,4 @@ insert into MinderRanking values(85,'None','None','Aranna',61910,'F',False,'2022
 insert into MinderRanking values(86,'3 on 3','4 on 4','Heistbaron Togwaggle',NULL,'S',False,'2022-08-02 21:28:20.345935');
 insert into MinderRanking values(87,'Jeef Curve','Toki Curve','Lady Vashj',NULL,'B',False,'2022-08-02 21:28:20.367633');
 insert into MinderRanking values(88,'None','None','Vanndar',80247,'D',False,'2022-08-02 21:28:20.842516');
+SELECT SETVAL ('minder_ranking_seq', '88');

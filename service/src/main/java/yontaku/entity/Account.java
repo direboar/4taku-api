@@ -1,5 +1,7 @@
 package yontaku.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Account {
+public class Account implements Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountid_seq")
     @SequenceGenerator(name = "accountid_seq", sequenceName = "accountid_seq", allocationSize = 1)
@@ -15,6 +17,8 @@ public class Account {
     private String oicdUserName;
     private String name;
     private boolean evaluateByMinderRanking;
+    private LocalDateTime updatedAt;
+
     public int getId() {
         return id;
     }
@@ -46,6 +50,12 @@ public class Account {
     }
     public void setEvaluateByMinderRanking(boolean evaluateByMinderRanking) {
         this.evaluateByMinderRanking = evaluateByMinderRanking;
+    }
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }

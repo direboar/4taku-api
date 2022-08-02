@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import yontaku.entity.Hero;
+import yontaku.utils.AuditableUtls;
 
 @ApplicationScoped
 public class HeroService {
@@ -24,7 +25,7 @@ public class HeroService {
     @Transactional
     public void save(List<Hero> heros){
         heros.forEach((hero->{
-            entityManager.persist(hero);
+            persist(hero);
         }));
     }
 
@@ -56,14 +57,19 @@ public class HeroService {
                 heroFromDb.setName(heroFromBattlenet.getName());
                 heroFromDb.setDisplayName(heroFromBattlenet.getDisplayName());
                 heroFromDb.setImageURL(heroFromBattlenet.getImageURL());
-                this.entityManager.persist(heroFromDb);
+                persist(heroFromDb);
 
             }else{
                 Hero heroFromBattlenet = herosFromBattlenet.get(kv.getKey());
-                this.entityManager.persist(heroFromBattlenet);
+                persist(heroFromBattlenet);
             }
         });
 
+    }
+
+    private void persist(Hero hero) {
+        AuditableUtls.updateTimestamp(hero);
+        entityManager.persist(hero);
     }
 
     private Map<Integer,Hero> toMap(List<Hero> heros){

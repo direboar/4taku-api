@@ -1,12 +1,14 @@
 package yontaku.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Hero {
+public class Hero implements Auditable{
     @Id
     private int id;
 
@@ -14,6 +16,7 @@ public class Hero {
     private String displayName;
     private String imageURL;
     private Boolean invalid;
+    private LocalDateTime updatedAt;
 
     //Eagerでとる場合はJOIN FETCHすること
     //@see https://terasolunaorg.github.io/guideline/public_review/ArchitectureInDetail/DataAccessJpa.html#join-fetch
@@ -78,6 +81,14 @@ public class Hero {
 
     public void setDeckTrackerHeroNameMapping(DeckTrackerHeroNameMapping deckTrackerHeroNameMapping) {
         this.deckTrackerHeroNameMapping = deckTrackerHeroNameMapping;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }

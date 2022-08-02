@@ -24,7 +24,7 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 @Entity
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-public class TierTable {
+public class TierTable implements Auditable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tiertable_seq")

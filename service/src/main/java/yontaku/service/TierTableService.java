@@ -1,8 +1,5 @@
 package yontaku.service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,6 +14,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import io.quarkus.oidc.UserInfo;
 import io.quarkus.security.identity.SecurityIdentity;
 import yontaku.entity.TierTable;
+import yontaku.utils.AuditableUtls;
 
 @ApplicationScoped
 public class TierTableService {
@@ -52,9 +50,7 @@ public class TierTableService {
         }
         
         //更新対象のTierTableをマージする。（HeroEvaluationはCascadeでマージされる。）
-        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-        LocalDateTime updatedAt = now.toLocalDateTime();
-        tierTable.setUpdatedAt(updatedAt);
+        AuditableUtls.updateTimestamp(tierTable);
         TierTable mergedTierTable = this.entityManager.merge(tierTable);
 
         return mergedTierTable.getId();

@@ -91,5 +91,5 @@ insert into HeroEvaluation values(161,42,74646,'{"desierd":[3,6,9],"needless":[2
 insert into HeroEvaluation values(162,43,59807,'{"desierd":[1,9],"needless":[6,5,8,7],"required":[2]}','','バトグラ徹底攻略','https://studybg.com/2022/07/17/zyarakusasu/',13);
 insert into HeroEvaluation values(163,43,60372,'{"desierd":[2,7],"needless":[1,5],"required":[6]}','','バトグラ徹底攻略','https://studybg.com/2022/07/17/fraguru/',4);
 insert into HeroEvaluation values(164,43,58535,'{"desierd":[9,1,4],"needless":[7,6,3],"required":[2,5]}','','バトグラ徹底攻略','https://studybg.com/2022/07/17/cutoon/',5);
-SELECT SETVAL ('hero_evaluation_seq', '176');
-
+insert into HeroEvaluation values(177,41,86291,'{"desierd":[9,5,2,1,8,7],"needless":[6,3],"required":[]}','','バトグラ徹底攻略','https://studybg.com/2022/07/27/toguwaguru/',1);
+SELECT SETVAL ('hero_evaluation_seq', '177');

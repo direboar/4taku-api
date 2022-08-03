@@ -81,3 +81,4 @@ INSERT INTO hero(id,name,displayname,imageurl,invalid) VALUES(79615,'Varden Dawn
 INSERT INTO hero(id,name,displayname,imageurl,invalid) VALUES(79618,'Queen Azshara','アズシャラ女王','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/648eb1f5831f821d0e4c8c4fd8e2ae34aec8e90e36d7ea778935857220cccf69.png',false);
 INSERT INTO hero(id,name,displayname,imageurl,invalid) VALUES(85125,'Lady Vashj','レディ・ヴァッシュ','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/6de1d9280c209e74cea40cb3e0465124b8fb39953fabadbe7680d2a33d7f2243.png',false);
 INSERT INTO hero(id,name,displayname,imageurl,invalid) VALUES(86013,'Ozumat','オズマット','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/31776e4ffa3f6297ff1723295f7fe3e68dfcf05db910c35654de92bba393df9e.png',false);
+INSERT INTO hero(id,name,displayname,imageurl,invalid) VALUES(86291,'Heistbaron Togwaggle','強盗王トグワグル','https://d15f34w2p8l1cc.cloudfront.net/hearthstone/555e2540e067371b6e27a3167888d57ede5c82ce25e89fe773e634ddfc013e1e.png',false);

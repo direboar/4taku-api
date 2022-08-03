@@ -53,11 +53,12 @@ public class HeroService {
                 //update
                 Hero heroFromBattlenet = herosFromBattlenet.get(kv.getKey());
                 Hero heroFromDb = herosFromDB.get(kv.getKey());
-
-                heroFromDb.setName(heroFromBattlenet.getName());
-                heroFromDb.setDisplayName(heroFromBattlenet.getDisplayName());
-                heroFromDb.setImageURL(heroFromBattlenet.getImageURL());
-                persist(heroFromDb);
+                if(!heroFromDb.isSame(heroFromBattlenet)){
+                    heroFromDb.setName(heroFromBattlenet.getName());
+                    heroFromDb.setDisplayName(heroFromBattlenet.getDisplayName());
+                    heroFromDb.setImageURL(heroFromBattlenet.getImageURL());
+                    persist(heroFromDb);
+                }
 
             }else{
                 Hero heroFromBattlenet = herosFromBattlenet.get(kv.getKey());

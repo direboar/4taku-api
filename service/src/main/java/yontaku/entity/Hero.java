@@ -91,4 +91,10 @@ public class Hero implements Auditable{
         this.updatedAt = updatedAt;
     }
 
+    public boolean isSame(Hero hero){
+        return hero.displayName.equals(this.displayName) &&
+            hero.imageURL.equals(this.imageURL) &&
+            hero.name.equals(this.name);
+    }
+
 }

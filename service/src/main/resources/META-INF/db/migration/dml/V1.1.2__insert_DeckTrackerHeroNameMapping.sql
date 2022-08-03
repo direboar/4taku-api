@@ -79,4 +79,6 @@ INSERT INTO DeckTrackerHeroNameMapping VALUES ('Rafaam',60362);
 INSERT INTO DeckTrackerHeroNameMapping VALUES ('George',57929);
 INSERT INTO DeckTrackerHeroNameMapping VALUES ('Toki',58534);
 INSERT INTO DeckTrackerHeroNameMapping VALUES ('Mutanus',71916);
--- INSERT INTO DeckTrackerHeroNameMapping VALUES ('Mutanus',null);
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Ozumat',86013);
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Vashj',85125);
+INSERT INTO DeckTrackerHeroNameMapping VALUES ('Togwaggle',86291);

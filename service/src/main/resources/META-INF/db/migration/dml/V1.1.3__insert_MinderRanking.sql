@@ -83,7 +83,7 @@ insert into MinderRanking values(82,'3 on 3','None','Ozumat',86013,'C',False,'20
 insert into MinderRanking values(83,'3 on 3','Fast Basic Curve','Al Akir',64403,'B',False,'2022-08-02 21:28:19.127889');
 insert into MinderRanking values(84,'Fast Basic Curve','3 on 3','Queen Azshara',79618,'B',False,'2022-08-02 21:28:19.405459');
 insert into MinderRanking values(85,'None','None','Aranna',61910,'F',False,'2022-08-02 21:28:19.892488');
-insert into MinderRanking values(86,'3 on 3','4 on 4','Heistbaron Togwaggle',NULL,'S',False,'2022-08-02 21:28:20.345935');
-insert into MinderRanking values(87,'Jeef Curve','Toki Curve','Lady Vashj',NULL,'B',False,'2022-08-02 21:28:20.367633');
+insert into MinderRanking values(86,'3 on 3','4 on 4','Heistbaron Togwaggle',86291,'S',False,'2022-08-02 21:28:20.345935');
+insert into MinderRanking values(87,'Jeef Curve','Toki Curve','Lady Vashj',85125,'B',False,'2022-08-02 21:28:20.367633');
 insert into MinderRanking values(88,'None','None','Vanndar',80247,'D',False,'2022-08-02 21:28:20.842516');
 SELECT SETVAL ('minder_ranking_seq', '88');

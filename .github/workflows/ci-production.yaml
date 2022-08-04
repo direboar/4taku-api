@@ -44,3 +44,15 @@ jobs:
         token: ${{ secrets.YONTAKU_REPOSITORY_DISPATCH_TOKEN }}
         event-type: update-manifest-production
         client-payload: '{"sha": "${{ github.sha }}"}'
+
+    - name: Discord Message Notify
+      uses: appleboy/discord-action@0.0.3
+      with:
+        webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+        webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+        color: "#48f442"
+        username: "GitHub Bot[4taku-api]"
+        args: |
+              productionブランチのビルドが完了しました。Production環境にデプロイするため、Manifestの更新を開始します。
+              トリガーイベント:${{ github.event_name }} 
+              コミットハッシュ:$https://github.com/direboar/4taku-api/commit/${{github.sha}}

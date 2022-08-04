@@ -53,6 +53,6 @@ jobs:
         color: "#48f442"
         username: "GitHub Bot[4taku-api]"
         args: |
-              APIのビルドが完了しました。Manifestの更新を開始します。
+              mainブランチのビルドが完了しました。Staging環境にデプロイするため、Manifestの更新を開始します。
               トリガーイベント:${{ github.event_name }} 
-              コミットハッシュ:$https://github.com/direboar/4taku-frontend/commit/${{github.sha}}
+              コミットハッシュ:$https://github.com/direboar/4taku-api/commit/${{github.sha}}

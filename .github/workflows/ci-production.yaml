@@ -55,4 +55,4 @@ jobs:
         args: |
               productionブランチのビルドが完了しました。Production環境にデプロイするため、Manifestの更新を開始します。
               トリガーイベント:${{ github.event_name }} 
-              コミットハッシュ:$https://github.com/direboar/4taku-api/commit/${{github.sha}}
+              コミット:https://github.com/direboar/4taku-api/commit/${{github.sha}}

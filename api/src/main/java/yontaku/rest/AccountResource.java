@@ -54,6 +54,7 @@ public class AccountResource {
         //更新項目を反映する。
         account.setName(updateRequest.getName());
         account.setTierTableId(updateRequest.getTierTableId());
+        account.setEvaluateByMinderRanking(updateRequest.isEvaluateByMinderRanking());
         account = this.accountService.update(account);
 
         return Response.ok().build();

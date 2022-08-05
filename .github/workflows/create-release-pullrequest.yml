@@ -1,0 +1,42 @@
+name: create-release-pullrequest
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@master
+
+      - name: Check if pr exists
+        id : check_pr
+        run: echo "::set-output name=count::$(gh pr list -S リリース用のPullRequestです。in:title | wc -l)"
+
+      - name: Create release pr
+        if: ${{ steps.check_pr.outputs.count == 0 }}
+        run: |
+         gh pr create --head main --base production --title リリース用のPullRequestです。 --body productionにリリースする場合、このPullRequestをマージしてください。
+        env:
+          AUTHOR: ${{ github.event.pusher.name }}
+
+      - name: Discord Message Notify
+        if: ${{ steps.check_pr.outputs.count == 0 }}
+        uses: appleboy/discord-action@0.0.3
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          color: "#48f442"
+          username: "GitHub Bot[4taku-frontend]"
+          args: |
+              リリース用のPullRequestを作成しました。
+              https://github.com/direboar/4taku-api/pulls/
+              トリガーイベント:${{ github.event_name }} 
